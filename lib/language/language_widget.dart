@@ -44,7 +44,9 @@ class _LanguageWidgetState extends State<LanguageWidget> {
                 fontFamily: 'SharpSans',
                 color: Colors.white,
                 fontSize: 22,
-                useGoogleFonts: false,
+                fontWeight: FontWeight.normal,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).title2Family),
               ),
         ),
         actions: [],
@@ -74,7 +76,8 @@ class _LanguageWidgetState extends State<LanguageWidget> {
                           color: Color(0xFF222F3A),
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          useGoogleFonts: false,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyText1Family),
                         ),
                   ),
                 ),

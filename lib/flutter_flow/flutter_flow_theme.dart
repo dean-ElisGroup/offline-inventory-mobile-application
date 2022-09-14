@@ -8,7 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 const kThemeModeKey = '__theme_mode__';
 SharedPreferences? _prefs;
 
+enum DeviceSize {
+  mobile,
+  tablet,
+  desktop,
+}
+
 abstract class FlutterFlowTheme {
+  static DeviceSize deviceSize = DeviceSize.mobile;
+
   static Future initialize() async =>
       _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
@@ -38,6 +46,9 @@ abstract class FlutterFlowTheme {
   late Color primaryText;
   late Color secondaryText;
 
+  late Color primaryBtnText;
+  late Color lineColor;
+
   String get title1Family => typography.title1Family;
   TextStyle get title1 => typography.title1;
   String get title2Family => typography.title2Family;
@@ -53,7 +64,22 @@ abstract class FlutterFlowTheme {
   String get bodyText2Family => typography.bodyText2Family;
   TextStyle get bodyText2 => typography.bodyText2;
 
-  Typography get typography => ThemeTypography(this);
+  Typography get typography => {
+        DeviceSize.mobile: MobileTypography(this),
+        DeviceSize.tablet: TabletTypography(this),
+        DeviceSize.desktop: DesktopTypography(this),
+      }[deviceSize]!;
+}
+
+DeviceSize getDeviceSize(BuildContext context) {
+  final width = MediaQuery.of(context).size.width;
+  if (width < 479) {
+    return DeviceSize.mobile;
+  } else if (width < 991) {
+    return DeviceSize.tablet;
+  } else {
+    return DeviceSize.desktop;
+  }
 }
 
 class LightModeTheme extends FlutterFlowTheme {
@@ -65,6 +91,9 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color secondaryBackground = const Color(0xFFF1F4F8);
   late Color primaryText = const Color(0xFF091249);
   late Color secondaryText = const Color(0xFF57636C);
+
+  late Color primaryBtnText = Color(0xFFFFFFFF);
+  late Color lineColor = Color(0xFFE0E3E7);
 }
 
 abstract class Typography {
@@ -84,56 +113,168 @@ abstract class Typography {
   TextStyle get bodyText2;
 }
 
-class ThemeTypography extends Typography {
-  ThemeTypography(this.theme);
+class MobileTypography extends Typography {
+  MobileTypography(this.theme);
 
   final FlutterFlowTheme theme;
 
-  String get title1Family => 'Roboto';
-  TextStyle get title1 => GoogleFonts.getFont(
-        'Roboto',
+  String get title1Family => 'SharpSans';
+  TextStyle get title1 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: Color(0xFF222F3A),
+        fontWeight: FontWeight.bold,
+        fontSize: 44,
+      );
+  String get title2Family => 'SharpSans';
+  TextStyle get title2 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: Color(0xFF222F3A),
+        fontWeight: FontWeight.bold,
+        fontSize: 32,
+      );
+  String get title3Family => 'SharpSans';
+  TextStyle get title3 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: Color(0xFF222F3A),
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+      );
+  String get subtitle1Family => 'SharpSans';
+  TextStyle get subtitle1 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: Color(0xFF222F3A),
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      );
+  String get subtitle2Family => 'SharpSans';
+  TextStyle get subtitle2 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: Color(0xFF222F3A),
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
+      );
+  String get bodyText1Family => 'SharpSans';
+  TextStyle get bodyText1 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: Color(0xFF222F3A),
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+      );
+  String get bodyText2Family => 'SharpSans';
+  TextStyle get bodyText2 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: Color(0xFF222F3A),
+        fontWeight: FontWeight.normal,
+        fontSize: 14,
+      );
+}
+
+class TabletTypography extends Typography {
+  TabletTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get title1Family => 'SharpSans';
+  TextStyle get title1 => TextStyle(
+        fontFamily: 'SharpSans',
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 44,
       );
-  String get title2Family => 'Roboto';
-  TextStyle get title2 => GoogleFonts.getFont(
-        'Roboto',
+  String get title2Family => 'SharpSans';
+  TextStyle get title2 => TextStyle(
+        fontFamily: 'SharpSans',
         color: theme.secondaryText,
         fontWeight: FontWeight.bold,
         fontSize: 32,
       );
-  String get title3Family => 'Roboto';
-  TextStyle get title3 => GoogleFonts.getFont(
-        'Roboto',
+  String get title3Family => 'SharpSans';
+  TextStyle get title3 => TextStyle(
+        fontFamily: 'SharpSans',
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 22,
       );
-  String get subtitle1Family => 'Roboto';
-  TextStyle get subtitle1 => GoogleFonts.getFont(
-        'Roboto',
+  String get subtitle1Family => 'SharpSans';
+  TextStyle get subtitle1 => TextStyle(
+        fontFamily: 'SharpSans',
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 16,
       );
-  String get subtitle2Family => 'Roboto';
-  TextStyle get subtitle2 => GoogleFonts.getFont(
-        'Roboto',
+  String get subtitle2Family => 'SharpSans';
+  TextStyle get subtitle2 => TextStyle(
+        fontFamily: 'SharpSans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16,
       );
-  String get bodyText1Family => 'Roboto';
-  TextStyle get bodyText1 => GoogleFonts.getFont(
-        'Roboto',
+  String get bodyText1Family => 'SharpSans';
+  TextStyle get bodyText1 => TextStyle(
+        fontFamily: 'SharpSans',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16,
       );
-  String get bodyText2Family => 'Roboto';
-  TextStyle get bodyText2 => GoogleFonts.getFont(
-        'Roboto',
+  String get bodyText2Family => 'SharpSans';
+  TextStyle get bodyText2 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14,
+      );
+}
+
+class DesktopTypography extends Typography {
+  DesktopTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get title1Family => 'SharpSans';
+  TextStyle get title1 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: theme.primaryText,
+        fontWeight: FontWeight.bold,
+        fontSize: 44,
+      );
+  String get title2Family => 'SharpSans';
+  TextStyle get title2 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.bold,
+        fontSize: 32,
+      );
+  String get title3Family => 'SharpSans';
+  TextStyle get title3 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: theme.primaryText,
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+      );
+  String get subtitle1Family => 'SharpSans';
+  TextStyle get subtitle1 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: theme.primaryText,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      );
+  String get subtitle2Family => 'SharpSans';
+  TextStyle get subtitle2 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
+      );
+  String get bodyText1Family => 'SharpSans';
+  TextStyle get bodyText1 => TextStyle(
+        fontFamily: 'SharpSans',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+      );
+  String get bodyText2Family => 'SharpSans';
+  TextStyle get bodyText2 => TextStyle(
+        fontFamily: 'SharpSans',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14,
@@ -149,6 +290,9 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color secondaryBackground = const Color(0xFF1D2429);
   late Color primaryText = const Color(0xFFFFFFFF);
   late Color secondaryText = const Color(0xFF95A1AC);
+
+  late Color primaryBtnText = Color(0xFFFFFFFF);
+  late Color lineColor = Color(0xFF22282F);
 }
 
 extension TextStyleHelper on TextStyle {

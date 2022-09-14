@@ -4,21 +4,82 @@ import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
-class SampleCall {
+const _kPrivateApiFunctionName = 'ffPrivateApiCall';
+
+class SolUsersCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'SolUsers',
+      apiUrl: 'https://deantestingdata.herokuapp.com/users',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+    );
+  }
+}
+
+class DeliveryAddressCall {
   static Future<ApiCallResponse> call({
-    int? id = 1,
+    String? solUser = '',
   }) {
     return ApiManager.instance.makeApiCall(
-      callName: 'Sample',
-      apiUrl: 'https://elistest-03be.restdb.io/rest/db-test',
+      callName: 'Delivery Address',
+      apiUrl: 'https://deantestingdata.herokuapp.com/deliveryaddress/',
       callType: ApiCallType.GET,
-      headers: {
-        'x-apikey': '9bc14238faf8f53347110c21208b18f422d61',
-      },
+      headers: {},
       params: {
-        '_id': id,
+        'solUser': solUser,
       },
       returnBody: true,
     );
   }
+}
+
+class PointOfServiceCall {
+  static Future<ApiCallResponse> call({
+    String? posGroupId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Point of Service',
+      apiUrl: 'https://deantestingdata.herokuapp.com/pos',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'posGroupId': posGroupId,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic posName(dynamic response) => getJsonField(
+        response,
+        r'''$..posName''',
+      );
+}
+
+class POSGroupCall {
+  static Future<ApiCallResponse> call({
+    String? deliveryAddressId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'POS Group',
+      apiUrl: 'https://deantestingdata.herokuapp.com/posgroup/',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'deliveryAddressId': deliveryAddressId,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic posGroupName(dynamic response) => getJsonField(
+        response,
+        r'''$..posGroupName''',
+      );
+  static dynamic postDeliveryAddressId(dynamic response) => getJsonField(
+        response,
+        r'''$..deliveryAddressId''',
+      );
 }

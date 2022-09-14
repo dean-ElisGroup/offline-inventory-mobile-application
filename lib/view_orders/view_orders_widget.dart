@@ -43,7 +43,9 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                 fontFamily: 'SharpSans',
                 color: Colors.white,
                 fontSize: 22,
-                useGoogleFonts: false,
+                fontWeight: FontWeight.normal,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).title2Family),
               ),
         ),
         actions: [],

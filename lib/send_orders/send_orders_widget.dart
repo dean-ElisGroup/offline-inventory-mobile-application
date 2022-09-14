@@ -43,7 +43,9 @@ class _SendOrdersWidgetState extends State<SendOrdersWidget> {
                 fontFamily: 'SharpSans',
                 color: Colors.white,
                 fontSize: 22,
-                useGoogleFonts: false,
+                fontWeight: FontWeight.normal,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).title2Family),
               ),
         ),
         actions: [],

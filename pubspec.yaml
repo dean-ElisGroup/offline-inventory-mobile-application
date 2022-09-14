@@ -58,6 +58,7 @@ dependencies:
   sign_in_with_apple: 4.1.0
   sign_in_with_apple_platform_interface: 1.0.0
   sign_in_with_apple_web: 1.0.1
+  swipeable_card_stack: ^0.0.5
   timeago: 3.2.2
   url_launcher: 6.1.5
 
@@ -105,33 +106,36 @@ flutter:
   fonts:
     - family: 'SharpSans'
       fonts:
-        - asset: assets/fonts/SharpSans-Thin.eot
+        - asset: assets/fonts/SharpSans-Thin.ttf
           weight: 100
-        - asset: assets/fonts/SharpSans-ThinItalic.eot
+        - asset: assets/fonts/SharpSans-ThinItalic.ttf
           weight: 100
           style: italic
-        - asset: assets/fonts/SharpSans-Light.eot
+        - asset: assets/fonts/SharpSans-Light.ttf
           weight: 300
-        - asset: assets/fonts/SharpSans-LightItalic.eot
+        - asset: assets/fonts/SharpSans-LightItalic.ttf
           weight: 300
           style: italic
-        - asset: assets/fonts/SharpSans-BookItalic.eot
+        - asset: assets/fonts/SharpSans-BookItalic.ttf
           style: italic
-        - asset: assets/fonts/SharpSans-Medium.eot
+        - asset: assets/fonts/SharpSans-Medium.ttf
           weight: 500
-        - asset: assets/fonts/SharpSans-MediumItalic.eot
+        - asset: assets/fonts/SharpSans-MediumItalic.ttf
           weight: 500
           style: italic
-        - asset: assets/fonts/SharpSans-Semibold.eot
+        - asset: assets/fonts/SharpSans-Semibold.ttf
           weight: 600
-        - asset: assets/fonts/SharpSans-Bold.eot
+        - asset: assets/fonts/SharpSans-SemiboldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/SharpSans-Bold.ttf
           weight: 700
-        - asset: assets/fonts/SharpSans-BoldItalic.eot
+        - asset: assets/fonts/SharpSans-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: assets/fonts/SharpSans-Extrabold.eot
+        - asset: assets/fonts/SharpSans-Extrabold.ttf
           weight: 800
-        - asset: assets/fonts/SharpSans-ExtraboldItalic.eot
+        - asset: assets/fonts/SharpSans-ExtraboldItalic.ttf
           weight: 800
           style: italic
 

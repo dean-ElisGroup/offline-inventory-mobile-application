@@ -1,13 +1,12 @@
-import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../language/language_widget.dart';
 import '../main.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeWidget extends StatefulWidget {
@@ -18,17 +17,25 @@ class WelcomeWidget extends StatefulWidget {
 }
 
 class _WelcomeWidgetState extends State<WelcomeWidget> {
-  TextEditingController? textController1;
-  TextEditingController? textController2;
+  TextEditingController? passwordController;
+
   late bool passwordVisibility;
+
+  TextEditingController? userIdController;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() => FFAppState().userid = '');
+    });
+
+    passwordController = TextEditingController();
     passwordVisibility = false;
+    userIdController = TextEditingController();
   }
 
   @override
@@ -63,14 +70,15 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     Align(
                       alignment: AlignmentDirectional(0, 0.7),
                       child: Text(
-                        functions.todaysDate(),
+                        dateTimeFormat('MMMMEEEEd', getCurrentTimestamp),
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'SharpSans',
                               color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
-                              useGoogleFonts: false,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
                             ),
                       ),
                     ),
@@ -81,8 +89,14 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  decoration: BoxDecoration(),
-                  alignment: AlignmentDirectional(0, 0),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/truck_uk_1_copy1.png',
+                      ).image,
+                    ),
+                  ),
                   child: Align(
                     alignment: AlignmentDirectional(0, -1),
                     child: SingleChildScrollView(
@@ -99,8 +113,8 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  width: 80,
-                                  height: 80,
+                                  width: 100,
+                                  height: 90,
                                   decoration: BoxDecoration(),
                                   child: Image.asset(
                                     'assets/images/Elis_Chevron_MyOrder-01.png',
@@ -113,209 +127,262 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    '1n3douax' /* Hello! */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'SharpSans',
-                                        fontSize: 35,
-                                        fontWeight: FontWeight.bold,
-                                        useGoogleFonts: false,
+                                Expanded(
+                                  child: Stack(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5, 0, 5, 0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.06,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xA0168183),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              '1n3douax' /* Hello! */,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'SharpSans',
+                                                  color: Colors.white,
+                                                  fontSize: 35,
+                                                  fontWeight: FontWeight.bold,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                                ),
+                                          ),
+                                        ),
                                       ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 0, 20, 0),
-                                  child: FutureBuilder<List<SolusersRecord>>(
-                                    future: querySolusersRecordOnce(
-                                      singleRecord: true,
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: CircularProgressIndicator(
-                                              color: Color(0xFF00B9B0),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<SolusersRecord>
-                                          textFieldSolusersRecordList =
-                                          snapshot.data!;
-                                      // Return an empty Container when the document does not exist.
-                                      if (snapshot.data!.isEmpty) {
-                                        return Container();
-                                      }
-                                      final textFieldSolusersRecord =
-                                          textFieldSolusersRecordList.isNotEmpty
-                                              ? textFieldSolusersRecordList
-                                                  .first
-                                              : null;
-                                      return TextFormField(
-                                        controller: textController1,
-                                        onChanged: (_) => EasyDebounce.debounce(
-                                          'textController1',
-                                          Duration(milliseconds: 2000),
-                                          () => setState(() {}),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 0),
+                                    child: TextFormField(
+                                      controller: userIdController,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        'userIdController',
+                                        Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          'efx1wkit' /* User Id */,
                                         ),
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: FFLocalizations.of(context)
-                                              .getText(
-                                            'r2ndg8gp' /* User Id */,
-                                          ),
-                                          hintText: FFLocalizations.of(context)
-                                              .getText(
-                                            'efx1wkit' /* User Id */,
-                                          ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText2
-                                                  .override(
-                                                    fontFamily: 'SharpSans',
-                                                    color: Color(0xFF222F3A),
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    useGoogleFonts: false,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0xFF222F3A),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0xFF222F3A),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          suffixIcon: textController1!
-                                                  .text.isNotEmpty
-                                              ? InkWell(
-                                                  onTap: () async {
-                                                    textController1?.clear();
-                                                    setState(() {});
-                                                  },
-                                                  child: Icon(
-                                                    Icons.clear,
-                                                    color: Color(0xFF222F3A),
-                                                    size: 22,
-                                                  ),
-                                                )
-                                              : null,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .bodyText2
                                             .override(
                                               fontFamily: 'SharpSans',
-                                              color: Color(0xFF222F3A),
-                                              fontSize: 20,
-                                              useGoogleFonts: false,
+                                              color: Color(0x80222F3A),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2Family),
                                             ),
-                                        textAlign: TextAlign.start,
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 10, 20, 0),
-                                  child: TextFormField(
-                                    controller: textController2,
-                                    obscureText: !passwordVisibility,
-                                    decoration: InputDecoration(
-                                      labelText:
-                                          FFLocalizations.of(context).getText(
-                                        'eduyxa81' /* Password */,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF168183),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF168183),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        suffixIcon:
+                                            userIdController!.text.isNotEmpty
+                                                ? InkWell(
+                                                    onTap: () async {
+                                                      userIdController?.clear();
+                                                      setState(() {});
+                                                    },
+                                                    child: Icon(
+                                                      Icons.clear,
+                                                      color: Color(0xFF222F3A),
+                                                      size: 22,
+                                                    ),
+                                                  )
+                                                : null,
                                       ),
-                                      hintText:
-                                          FFLocalizations.of(context).getText(
-                                        '1amcflbj' /* Password */,
-                                      ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyText2
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
                                           .override(
                                             fontFamily: 'SharpSans',
                                             color: Color(0xFF222F3A),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                            useGoogleFonts: false,
+                                            fontSize: 20,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family),
                                           ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFF222F3A),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFF222F3A),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      suffixIcon: InkWell(
-                                        onTap: () => setState(
-                                          () => passwordVisibility =
-                                              !passwordVisibility,
-                                        ),
-                                        focusNode:
-                                            FocusNode(skipTraversal: true),
-                                        child: Icon(
-                                          passwordVisibility
-                                              ? Icons.visibility_outlined
-                                              : Icons.visibility_off_outlined,
-                                          color: Color(0xFF222F3A),
-                                          size: 22,
-                                        ),
-                                      ),
+                                      textAlign: TextAlign.start,
+                                      keyboardType: TextInputType.number,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'SharpSans',
-                                          color: Color(0xFF222F3A),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: false,
-                                        ),
-                                    textAlign: TextAlign.start,
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 0, 20, 0),
+                                    child: TextFormField(
+                                      controller: passwordController,
+                                      obscureText: !passwordVisibility,
+                                      decoration: InputDecoration(
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          '1amcflbj' /* Password */,
+                                        ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .bodyText2
+                                            .override(
+                                              fontFamily: 'SharpSans',
+                                              color: Color(0x80222F3A),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2Family),
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF168183),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF168183),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        suffixIcon: InkWell(
+                                          onTap: () => setState(
+                                            () => passwordVisibility =
+                                                !passwordVisibility,
+                                          ),
+                                          focusNode:
+                                              FocusNode(skipTraversal: true),
+                                          child: Icon(
+                                            passwordVisibility
+                                                ? Icons.visibility_outlined
+                                                : Icons.visibility_off_outlined,
+                                            color: Color(0xFF222F3A),
+                                            size: 22,
+                                          ),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'SharpSans',
+                                            color: Color(0xFF222F3A),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family),
+                                          ),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Padding(
                             padding:
@@ -327,22 +394,30 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        20, 20, 20, 20),
+                                        20, 0, 20, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        if (textController1!.text != null &&
-                                            textController1!.text != '') {
+                                        if (userIdController!.text != null &&
+                                            userIdController!.text != '') {
+                                          setState(() => FFAppState().userid =
+                                              userIdController!.text);
+                                          setState(() =>
+                                              FFAppState().orderdate =
+                                                  dateTimeFormat('d/M/y',
+                                                      getCurrentTimestamp));
                                           await Navigator.push(
                                             context,
-                                            MaterialPageRoute(
-                                              builder: (context) => NavBarPage(
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 0),
+                                              child: NavBarPage(
                                                   initialPage:
                                                       'Delivery_Address'),
                                             ),
                                           );
-                                          setState(() =>
-                                              FFAppState().orderdate =
-                                                  functions.todaysDate());
                                         } else {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
@@ -381,12 +456,13 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                               fontFamily: 'SharpSans',
                                               color: Colors.white,
                                               fontSize: 16,
-                                              useGoogleFonts: false,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2Family),
                                             ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                        ),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                     ),

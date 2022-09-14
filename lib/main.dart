@@ -103,9 +103,10 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key? key, this.initialPage}) : super(key: key);
+  NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);
 
   final String? initialPage;
+  final Widget? page;
 
   @override
   _NavBarPageState createState() => _NavBarPageState();
@@ -113,12 +114,14 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'Delivery_Address';
+  String _currentPageName = 'Delivery_Address';
+  late Widget? _currentPage;
 
   @override
   void initState() {
     super.initState();
-    _currentPage = widget.initialPage ?? _currentPage;
+    _currentPageName = widget.initialPage ?? _currentPageName;
+    _currentPage = widget.page;
   }
 
   @override
@@ -129,12 +132,15 @@ class _NavBarPageState extends State<NavBarPage> {
       'Send_Orders': SendOrdersWidget(),
       'Settings': SettingsWidget(),
     };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
+    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
-      body: tabs[_currentPage],
+      body: _currentPage ?? tabs[_currentPageName],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
+        onTap: (i) => setState(() {
+          _currentPage = null;
+          _currentPageName = tabs.keys.toList()[i];
+        }),
         backgroundColor: Color(0xFF168183),
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white,
@@ -145,19 +151,17 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.local_shipping_sharp,
-              size: 24,
+              size: 30,
             ),
             label: FFLocalizations.of(context).getText(
-              '9zjjmymi' /* Delivery
-address */
-              ,
+              '9zjjmymi' /* Orders */,
             ),
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.list,
-              size: 24,
+              size: 30,
             ),
             label: FFLocalizations.of(context).getText(
               'm0i5gzdg' /* View orders */,
@@ -167,7 +171,7 @@ address */
           BottomNavigationBarItem(
             icon: Icon(
               Icons.send,
-              size: 24,
+              size: 30,
             ),
             label: FFLocalizations.of(context).getText(
               'bqy8c55a' /* Send orders */,
@@ -177,7 +181,7 @@ address */
           BottomNavigationBarItem(
             icon: Icon(
               Icons.settings,
-              size: 24,
+              size: 30,
             ),
             label: FFLocalizations.of(context).getText(
               'c88utr23' /* Settings */,
