@@ -299,11 +299,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Afficher les commandes',
       'pt': 'Ver pedidos',
     },
-    'zo3gzsh2': {
-      'en': '[ Order Id ]',
-      'de': '[ Auftragsnummer ]',
-      'fr': '[ Numéro de commande ]',
-      'pt': '[ID do pedido]',
+    'ynn3tn2t': {
+      'en': 'Select order',
+      'de': '',
+      'fr': '',
+      'pt': '',
     },
     'm0i5gzdg': {
       'en': 'View orders',

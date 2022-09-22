@@ -57,35 +57,38 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: Image.asset(
-                      'assets/images/truck_uk_1_copy1.png',
-                    ).image,
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: Image.asset(
+                  'assets/images/truck_uk_1_copy1.png',
+                ).image,
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        width: 2,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Stack(
                           children: [
                             Padding(
                               padding:
@@ -94,129 +97,113 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      OrderdateWidget(),
-                                      Text(
-                                        dateTimeFormat(
-                                            'MMMMEEEEd', getCurrentTimestamp),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w800,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                                  OrderdateWidget(),
                                 ],
                               ),
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                              child: Container(
-                                width: double.infinity,
-                                height: 100,
-                                decoration: BoxDecoration(),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 10, 10, 0),
-                                  child: ListView(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    children: [
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.09,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                          ),
+                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    dateTimeFormat(
+                                        'MMMMEEEEd', getCurrentTimestamp),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1Family,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w800,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1Family),
                                         ),
-                                        child: ListTile(
-                                          title: Text(
-                                            FFAppState().deliveryAddressName,
-                                            style: FlutterFlowTheme.of(context)
-                                                .title3
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .title3Family,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w600,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title3Family),
-                                                ),
-                                          ),
-                                          subtitle: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'zo3gzsh2' /* [ Order Id ] */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .subtitle2
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .subtitle2Family,
-                                                  fontWeight: FontWeight.normal,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
-                                                ),
-                                          ),
-                                          trailing: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            size: 20,
-                                          ),
-                                          dense: true,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                           ],
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+                Divider(
+                  indent: 10,
+                  endIndent: 10,
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Select order',
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyText1Family,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
+                            ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
+                    child: Container(
+                      width: double.infinity,
+                      height: 100,
+                      decoration: BoxDecoration(),
+                      child: GridView(
+                        padding: EdgeInsets.zero,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          crossAxisSpacing: 0,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 3,
+                        ),
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                            child: Container(
+                              width: double.infinity,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
