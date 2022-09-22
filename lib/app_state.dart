@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/lat_lng.dart';
+import 'dart:convert';
 
 class FFAppState {
   static final FFAppState _instance = FFAppState._internal();
@@ -24,6 +25,40 @@ class FFAppState {
     _deliveryAddressId =
         prefs.getString('ff_deliveryAddressId') ?? _deliveryAddressId;
     _fullorder = prefs.getBool('ff_fullorder') ?? _fullorder;
+    if (prefs.containsKey('ff_deliveryaddressJson')) {
+      try {
+        _deliveryaddressJson =
+            jsonDecode(prefs.getString('ff_deliveryaddressJson') ?? '');
+      } catch (e) {
+        print("Can't decode persisted json. Error: $e.");
+      }
+    }
+
+    if (prefs.containsKey('ff_posGroupJson')) {
+      try {
+        _posGroupJson = jsonDecode(prefs.getString('ff_posGroupJson') ?? '');
+      } catch (e) {
+        print("Can't decode persisted json. Error: $e.");
+      }
+    }
+
+    _posGroupId = prefs.getString('ff_posGroupId') ?? _posGroupId;
+    if (prefs.containsKey('ff_posJson')) {
+      try {
+        _posJson = jsonDecode(prefs.getString('ff_posJson') ?? '');
+      } catch (e) {
+        print("Can't decode persisted json. Error: $e.");
+      }
+    }
+
+    if (prefs.containsKey('ff_userDetailJson')) {
+      try {
+        _userDetailJson =
+            jsonDecode(prefs.getString('ff_userDetailJson') ?? '');
+      } catch (e) {
+        print("Can't decode persisted json. Error: $e.");
+      }
+    }
   }
 
   late SharedPreferences prefs;
@@ -84,6 +119,41 @@ class FFAppState {
   set fullorder(bool _value) {
     _fullorder = _value;
     prefs.setBool('ff_fullorder', _value);
+  }
+
+  dynamic _deliveryaddressJson;
+  dynamic get deliveryaddressJson => _deliveryaddressJson;
+  set deliveryaddressJson(dynamic _value) {
+    _deliveryaddressJson = _value;
+    prefs.setString('ff_deliveryaddressJson', jsonEncode(_value));
+  }
+
+  dynamic _posGroupJson;
+  dynamic get posGroupJson => _posGroupJson;
+  set posGroupJson(dynamic _value) {
+    _posGroupJson = _value;
+    prefs.setString('ff_posGroupJson', jsonEncode(_value));
+  }
+
+  String _posGroupId = '';
+  String get posGroupId => _posGroupId;
+  set posGroupId(String _value) {
+    _posGroupId = _value;
+    prefs.setString('ff_posGroupId', _value);
+  }
+
+  dynamic _posJson;
+  dynamic get posJson => _posJson;
+  set posJson(dynamic _value) {
+    _posJson = _value;
+    prefs.setString('ff_posJson', jsonEncode(_value));
+  }
+
+  dynamic _userDetailJson;
+  dynamic get userDetailJson => _userDetailJson;
+  set userDetailJson(dynamic _value) {
+    _userDetailJson = _value;
+    prefs.setString('ff_userDetailJson', jsonEncode(_value));
   }
 }
 

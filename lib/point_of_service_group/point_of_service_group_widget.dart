@@ -1,3 +1,4 @@
+import '../backend/api_requests/api_calls.dart';
 import '../components/orderdate_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -5,10 +6,16 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../point_of_service/point_of_service_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PointOfServiceGroupWidget extends StatefulWidget {
-  const PointOfServiceGroupWidget({Key? key}) : super(key: key);
+  const PointOfServiceGroupWidget({
+    Key? key,
+    this.parmDeliveryAddressId,
+  }) : super(key: key);
+
+  final String? parmDeliveryAddressId;
 
   @override
   _PointOfServiceGroupWidgetState createState() =>
@@ -16,7 +23,23 @@ class PointOfServiceGroupWidget extends StatefulWidget {
 }
 
 class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
+  ApiCallResponse? apiResult831;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      apiResult831 = await POSGroupCall.call(
+        deliveryAddressId: '1100',
+      );
+      if ((apiResult831?.succeeded ?? true)) {
+        setState(
+            () => FFAppState().posGroupJson = (apiResult831?.jsonBody ?? ''));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,8 +160,8 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                             .override(
                                               fontFamily: 'SharpSans',
                                               color: Color(0xFF222F3A),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w800,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
@@ -152,7 +175,7 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 0),
+                                      0, 5, 0, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +191,7 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                             .override(
                                               fontFamily: 'SharpSans',
                                               color: Color(0xFF222F3A),
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w600,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
@@ -189,16 +212,14 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        FFLocalizations.of(context).getText(
-                                          'n4vjbddo' /* [ Delivery Address Name] */,
-                                        ),
+                                        FFAppState().deliveryAddressName,
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'SharpSans',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w800,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
@@ -262,76 +283,121 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5, 10, 5, 10),
-                                  child: GridView(
-                                    padding: EdgeInsets.zero,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 1,
-                                      crossAxisSpacing: 0,
-                                      mainAxisSpacing: 10,
-                                      childAspectRatio: 3,
-                                    ),
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 0, 20, 20),
-                                        child: Container(
-                                          width: 100,
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFF168183),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child: PointOfServiceWidget(),
-                                                ),
-                                              );
-                                            },
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'cgy6knin' /* [POS Group] */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'SharpSans',
-                                                        color: Colors.white,
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family),
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final posGroup =
+                                          FFAppState().posGroupJson.toList();
+                                      return GridView.builder(
+                                        padding: EdgeInsets.zero,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 1,
+                                          crossAxisSpacing: 0,
+                                          mainAxisSpacing: 10,
+                                          childAspectRatio: 3,
                                         ),
-                                      ),
-                                    ],
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: posGroup.length,
+                                        itemBuilder: (context, posGroupIndex) {
+                                          final posGroupItem =
+                                              posGroup[posGroupIndex];
+                                          return Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 0, 20, 10),
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              elevation: 3,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
+                                              child: Container(
+                                                width: 100,
+                                                height: 100,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF168183),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    setState(() => FFAppState()
+                                                                .posGroupName =
+                                                            getJsonField(
+                                                          posGroupItem,
+                                                          r'''$..posGroupName''',
+                                                        ).toString());
+                                                    setState(() => FFAppState()
+                                                                .posGroupId =
+                                                            getJsonField(
+                                                          posGroupItem,
+                                                          r'''$..posGroupId''',
+                                                        ).toString());
+                                                    await Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                        reverseDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        child:
+                                                            PointOfServiceWidget(
+                                                          parmPOSGroupId:
+                                                              getJsonField(
+                                                            posGroupItem,
+                                                            r'''$..posGroupId''',
+                                                          ).toString(),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        getJsonField(
+                                                          posGroupItem,
+                                                          r'''$..posGroupName''',
+                                                        ).toString(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'SharpSans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
                                   ),
                                 ),
                               ),

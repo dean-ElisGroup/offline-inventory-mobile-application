@@ -2,8 +2,9 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../landing_page/landing_page_widget.dart';
 import '../language/language_widget.dart';
-import '../main.dart';
+import '../custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -20,9 +21,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
   TextEditingController? passwordController;
 
   late bool passwordVisibility;
-
   TextEditingController? userIdController;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -31,11 +30,19 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() => FFAppState().userid = '');
+      await actions.lockOrientation();
     });
 
     passwordController = TextEditingController();
     passwordVisibility = false;
     userIdController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    passwordController?.dispose();
+    userIdController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -413,9 +420,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                                   Duration(milliseconds: 0),
                                               reverseDuration:
                                                   Duration(milliseconds: 0),
-                                              child: NavBarPage(
-                                                  initialPage:
-                                                      'Delivery_Address'),
+                                              child: LandingPageWidget(),
                                             ),
                                           );
                                         } else {
@@ -423,7 +428,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                'User Id must be filled in',
+                                                'User Id cannot be blank',
                                                 style: TextStyle(
                                                   fontFamily: 'SharpSans',
                                                   color: Color(0xFF222F3A),
@@ -432,9 +437,10 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  Duration(milliseconds: 6000),
+                                                  Duration(milliseconds: 3000),
                                               backgroundColor:
-                                                  Color(0xC1FFFFFF),
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
                                             ),
                                           );
                                         }
@@ -484,7 +490,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                 ),
                 child: Container(
                   width: double.infinity,
-                  height: 80,
+                  height: MediaQuery.of(context).size.height * 0.1,
                   decoration: BoxDecoration(
                     color: Color(0xFF168183),
                   ),
@@ -496,13 +502,16 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     icon: Icon(
                       Icons.language_sharp,
                       color: Colors.white,
-                      size: 20,
+                      size: 30,
                     ),
                     onPressed: () async {
                       await Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => LanguageWidget(),
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                          reverseDuration: Duration(milliseconds: 0),
+                          child: LanguageWidget(),
                         ),
                       );
                     },

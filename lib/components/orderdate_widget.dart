@@ -21,7 +21,7 @@ class _OrderdateWidgetState extends State<OrderdateWidget> {
       style: FlutterFlowTheme.of(context).bodyText1.override(
             fontFamily: 'SharpSans',
             color: Color(0xFF222F3A),
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             useGoogleFonts: GoogleFonts.asMap()
                 .containsKey(FlutterFlowTheme.of(context).bodyText1Family),

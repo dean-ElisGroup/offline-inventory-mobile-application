@@ -21,6 +21,12 @@ class _OrderDateRowWidgetState extends State<OrderDateRowWidget> {
   }
 
   @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,

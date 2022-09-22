@@ -86,7 +86,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -120,7 +120,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '[SOL User name]',
+                    FFLocalizations.of(context).getText(
+                      'wppp594p' /* [SOL User name] */,
+                    ),
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily:
@@ -300,8 +302,11 @@ class _SettingsWidgetState extends State<SettingsWidget>
                         await signOut();
                         await Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => WelcomeWidget(),
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: WelcomeWidget(),
                           ),
                           (r) => false,
                         );
@@ -342,8 +347,11 @@ class _SettingsWidgetState extends State<SettingsWidget>
                       onPressed: () async {
                         await Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => LanguageWidget(),
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: LanguageWidget(),
                           ),
                         );
                       },

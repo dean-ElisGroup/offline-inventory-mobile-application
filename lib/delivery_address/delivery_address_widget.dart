@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../point_of_service_group/point_of_service_group_widget.dart';
 import '../welcome/welcome_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeliveryAddressWidget extends StatefulWidget {
@@ -22,7 +23,23 @@ class DeliveryAddressWidget extends StatefulWidget {
 }
 
 class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
+  ApiCallResponse? apiResultxnf;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      apiResultxnf = await DeliveryAddressCall.call(
+        solUser: '1000',
+      );
+      if ((apiResultxnf?.succeeded ?? true)) {
+        setState(() =>
+            FFAppState().deliveryaddressJson = (apiResultxnf?.jsonBody ?? ''));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +62,11 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
             await signOut();
             await Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context) => WelcomeWidget(),
+              PageTransition(
+                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 0),
+                reverseDuration: Duration(milliseconds: 0),
+                child: WelcomeWidget(),
               ),
               (r) => false,
             );
@@ -140,8 +160,8 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                           .override(
                                             fontFamily: 'SharpSans',
                                             color: Color(0xFF222F3A),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w800,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -193,26 +213,11 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                           child: Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: DeliveryAddressCall.call(
-                                solUser: widget.parmUserId,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircularProgressIndicator(
-                                        color: Color(0xFF00B9B0),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final delvAddGridViewDeliveryAddressResponse =
-                                    snapshot.data!;
-                                return GridView(
+                            child: Builder(
+                              builder: (context) {
+                                final deliveryAddress =
+                                    FFAppState().deliveryaddressJson.toList();
+                                return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
@@ -222,9 +227,24 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                     childAspectRatio: 3,
                                   ),
                                   scrollDirection: Axis.vertical,
-                                  children: [
-                                    InkWell(
+                                  itemCount: deliveryAddress.length,
+                                  itemBuilder: (context, deliveryAddressIndex) {
+                                    final deliveryAddressItem =
+                                        deliveryAddress[deliveryAddressIndex];
+                                    return InkWell(
                                       onTap: () async {
+                                        setState(() =>
+                                            FFAppState().deliveryAddressId =
+                                                getJsonField(
+                                              deliveryAddressItem,
+                                              r'''$..deliveryAddressId''',
+                                            ).toString());
+                                        setState(() =>
+                                            FFAppState().deliveryAddressName =
+                                                getJsonField(
+                                              deliveryAddressItem,
+                                              r'''$..deliveryAddressName''',
+                                            ).toString());
                                         await Navigator.push(
                                           context,
                                           PageTransition(
@@ -232,7 +252,11 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                             duration: Duration(milliseconds: 0),
                                             reverseDuration:
                                                 Duration(milliseconds: 0),
-                                            child: PointOfServiceGroupWidget(),
+                                            child: PointOfServiceGroupWidget(
+                                              parmDeliveryAddressId:
+                                                  FFAppState()
+                                                      .deliveryAddressId,
+                                            ),
                                           ),
                                         );
                                       },
@@ -262,17 +286,23 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                                 onTap: () async {
                                                   await Navigator.push(
                                                     context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                      reverseDuration: Duration(
+                                                          milliseconds: 0),
+                                                      child:
                                                           PointOfServiceGroupWidget(),
                                                     ),
                                                   );
                                                 },
                                                 child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    's2i2bz2y' /* [Delivery Address Name] */,
-                                                  ),
+                                                  getJsonField(
+                                                    deliveryAddressItem,
+                                                    r'''$..deliveryAddressName''',
+                                                  ).toString(),
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -291,10 +321,10 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                                 ),
                                               ),
                                               Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'wq790kah' /* [Delivery Address Id] */,
-                                                ),
+                                                getJsonField(
+                                                  deliveryAddressItem,
+                                                  r'''$..deliveryAddressId''',
+                                                ).toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1
@@ -316,8 +346,8 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    );
+                                  },
                                 );
                               },
                             ),

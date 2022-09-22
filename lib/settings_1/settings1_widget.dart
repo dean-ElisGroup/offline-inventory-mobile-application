@@ -697,8 +697,11 @@ class _Settings1WidgetState extends State<Settings1Widget>
                     await signOut();
                     await Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => WelcomeWidget(),
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                        reverseDuration: Duration(milliseconds: 0),
+                        child: WelcomeWidget(),
                       ),
                       (r) => false,
                     );

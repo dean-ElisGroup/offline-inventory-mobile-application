@@ -1,10 +1,12 @@
 import '../article_entry/article_entry_widget.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../components/orderdate_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../point_of_service_group/point_of_service_group_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PointOfServiceWidget extends StatefulWidget {
@@ -12,17 +14,34 @@ class PointOfServiceWidget extends StatefulWidget {
     Key? key,
     this.parmPosGroup,
     this.parmDeliveryAddressName,
+    this.parmPOSGroupId,
   }) : super(key: key);
 
   final String? parmPosGroup;
   final String? parmDeliveryAddressName;
+  final String? parmPOSGroupId;
 
   @override
   _PointOfServiceWidgetState createState() => _PointOfServiceWidgetState();
 }
 
 class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
+  ApiCallResponse? apiResult7qn;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      apiResult7qn = await PointOfServiceCall.call(
+        posGroupId: widget.parmPOSGroupId,
+      );
+      if ((apiResult7qn?.succeeded ?? true)) {
+        setState(() => FFAppState().posJson = (apiResult7qn?.jsonBody ?? ''));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +63,11 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
           onPressed: () async {
             await Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => PointOfServiceGroupWidget(),
+              PageTransition(
+                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 0),
+                reverseDuration: Duration(milliseconds: 0),
+                child: PointOfServiceGroupWidget(),
               ),
             );
           },
@@ -106,7 +128,7 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                     constraints: BoxConstraints(
                                       maxHeight:
                                           MediaQuery.of(context).size.height *
-                                              0.25,
+                                              0.27,
                                     ),
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -156,9 +178,9 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
-                                                          fontSize: 16,
+                                                          fontSize: 18,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                              FontWeight.w800,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -193,7 +215,7 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                               'SharpSans',
                                                           color:
                                                               Color(0xFF222F3A),
-                                                          fontSize: 18,
+                                                          fontSize: 16,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
@@ -216,10 +238,8 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      '2pyniyrh' /* [Delivery Address Name] */,
-                                                    ),
+                                                    FFAppState()
+                                                        .deliveryAddressName,
                                                     textAlign: TextAlign.center,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -229,9 +249,9 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
-                                                          fontSize: 16,
+                                                          fontSize: 18,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                              FontWeight.w800,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -266,7 +286,7 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                               'SharpSans',
                                                           color:
                                                               Color(0xFF222F3A),
-                                                          fontSize: 18,
+                                                          fontSize: 16,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
@@ -294,11 +314,7 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                             .fromSTEB(
                                                                 0, 0, 0, 5),
                                                     child: Text(
-                                                      FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        'o24tibia' /* [Point of service Group] */,
-                                                      ),
+                                                      FFAppState().posGroupName,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -307,10 +323,10 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1Family,
-                                                                fontSize: 16,
+                                                                fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
+                                                                        .w800,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -332,29 +348,31 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 5, 0, 0),
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'p0ixjwfv' /* Select point of service */,
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 5, 0, 0),
+                                        child: Text(
+                                          FFLocalizations.of(context).getText(
+                                            'p0ixjwfv' /* Select point of service */,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyText1Family),
+                                              ),
                                         ),
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w600,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
-                                            ),
                                       ),
                                     ),
                                   ],
@@ -362,121 +380,144 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 15, 5, 5),
-                                    child: GridView(
-                                      padding: EdgeInsets.zero,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 0,
-                                        mainAxisSpacing: 0,
-                                        childAspectRatio: 1,
-                                      ),
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  5, 0, 5, 0),
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 3,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
-                                            child: Container(
-                                              width: 100,
-                                              height: 100,
-                                              decoration: BoxDecoration(
-                                                color: Color(0xFF168183),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                shape: BoxShape.rectangle,
-                                              ),
-                                              alignment:
-                                                  AlignmentDirectional(0, 0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
+                                        10, 15, 10, 5),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final pos =
+                                            FFAppState().posJson.toList();
+                                        return GridView.builder(
+                                          padding: EdgeInsets.zero,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 0,
+                                            mainAxisSpacing: 10,
+                                            childAspectRatio: 2,
+                                          ),
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: pos.length,
+                                          itemBuilder: (context, posIndex) {
+                                            final posItem = pos[posIndex];
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5, 0, 5, 0),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 3,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: 100,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF168183),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    shape: BoxShape.rectangle,
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Expanded(
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            await Navigator
+                                                                .push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
                                                                     milliseconds:
                                                                         0),
-                                                            child:
-                                                                ArticleEntryWidget(
-                                                              parmDeliveryAddressName:
-                                                                  widget
-                                                                      .parmDeliveryAddressName,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: Stack(
-                                                        children: [
-                                                          Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    0, -0.6),
-                                                            child: Icon(
-                                                              Icons.flag_sharp,
-                                                              color:
-                                                                  Colors.white,
-                                                              size: 34,
-                                                            ),
-                                                          ),
-                                                          Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    0, 0),
-                                                            child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'sor49i55' /* [POS] */,
+                                                                reverseDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                child:
+                                                                    ArticleEntryWidget(
+                                                                  parmDeliveryAddressName:
+                                                                      widget
+                                                                          .parmDeliveryAddressName,
+                                                                  parmPOS:
+                                                                      getJsonField(
+                                                                    posItem,
+                                                                    r'''$..posName''',
+                                                                  ).toString(),
+                                                                ),
                                                               ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'SharpSans',
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        20,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
+                                                            );
+                                                          },
+                                                          child: Stack(
+                                                            children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0,
+                                                                        -0.6),
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .flag_sharp,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  size: 34,
+                                                                ),
+                                                              ),
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0, 0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          25,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    getJsonField(
+                                                                      posItem,
+                                                                      r'''$..posName''',
+                                                                    ).toString(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'SharpSans',
+                                                                          color:
+                                                                              Colors.white,
+                                                                          fontSize:
+                                                                              20,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                        ),
                                                                   ),
-                                                            ),
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ],
+                                                        ),
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),

@@ -86,10 +86,10 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
-          ? Container(
-              color: Color(0xFF168183),
-              child: Builder(
-                builder: (context) => Image.asset(
+          ? Builder(
+              builder: (context) => Container(
+                color: Color(0xFF168183),
+                child: Image.asset(
                   'assets/images/Elis-logo_white.png',
                   fit: BoxFit.scaleDown,
                 ),
@@ -114,7 +114,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'Delivery_Address';
+  String _currentPageName = 'Settings';
   late Widget? _currentPage;
 
   @override
