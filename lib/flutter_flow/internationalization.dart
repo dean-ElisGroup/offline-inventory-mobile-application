@@ -299,8 +299,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Afficher les commandes',
       'pt': 'Ver pedidos',
     },
-    'ynn3tn2t': {
+    'ykej8aab': {
       'en': 'Select order',
+      'de': '',
+      'fr': '',
+      'pt': '',
+    },
+    'fzs3gi89': {
+      'en': '[orderId]',
       'de': '',
       'fr': '',
       'pt': '',
@@ -319,6 +325,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Bestellungen senden',
       'fr': 'Envoyer des commandes',
       'pt': 'Enviar pedidos',
+    },
+    'll4qa4un': {
+      'en': 'Select order to send',
+      'de': '',
+      'fr': '',
+      'pt': '',
+    },
+    'c1x97wvh': {
+      'en': '[orderId]',
+      'de': '',
+      'fr': '',
+      'pt': '',
     },
     'bqy8c55a': {
       'en': 'Send orders',
