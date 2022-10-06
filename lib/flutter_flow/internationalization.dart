@@ -353,23 +353,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': '[Nom d&#39;utilisateur SOL]',
       'pt': '[Nome de usuário SOL]',
     },
-    'memchm9e': {
+    '1qjhsg3w': {
       'en': 'Switch to Dark Mode',
       'de': 'Wechseln Sie in den dunklen Modus',
       'fr': 'Passer en mode sombre',
       'pt': 'Mudar para o modo escuro',
     },
-    'bhqh0yr9': {
+    'wus7hb9t': {
       'en': 'Logout',
-      'de': 'Ausloggen',
-      'fr': 'Se déconnecter',
-      'pt': 'Sair',
-    },
-    'xn92fvtg': {
-      'en': 'Select language',
-      'de': 'Sprache auswählen',
-      'fr': 'Choisir la langue',
-      'pt': 'Selecione o idioma',
+      'de': 'Wechseln Sie in den dunklen Modus',
+      'fr': 'Passer en mode sombre',
+      'pt': 'Mudar para o modo escuro',
     },
     'vg65ze38': {
       'en': 'Settings',

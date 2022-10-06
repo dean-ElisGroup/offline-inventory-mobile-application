@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../point_of_service/point_of_service_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
-import '../custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -961,15 +960,6 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                                     ),
                                                                   ),
                                                                 ],
-                                                              ),
-                                                              Container(
-                                                                width: 200,
-                                                                height: 200,
-                                                                child: custom_widgets
-                                                                    .FlutterSwitch(
-                                                                  width: 200,
-                                                                  height: 200,
-                                                                ),
                                                               ),
                                                             ],
                                                           ),

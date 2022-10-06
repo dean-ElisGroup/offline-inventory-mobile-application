@@ -155,6 +155,8 @@ class FFAppState {
     _userDetailJson = _value;
     prefs.setString('ff_userDetailJson', jsonEncode(_value));
   }
+
+  bool changeLanguage = false;
 }
 
 LatLng? _latLngFromString(String? val) {

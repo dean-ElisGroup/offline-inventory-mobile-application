@@ -1,11 +1,8 @@
-import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_language_selector.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../language/language_widget.dart';
 import '../welcome/welcome_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
@@ -148,60 +145,88 @@ class _SettingsWidgetState extends State<SettingsWidget>
                 thickness: 1,
                 indent: 24,
                 endIndent: 24,
-                color: Color(0xFFC5C5C5),
+                color: FlutterFlowTheme.of(context).primaryColor,
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                 child: Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.06,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(
-                      color: Color(0xFFE0E3E7),
-                      width: 2,
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      width: 1,
                     ),
                   ),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(2, 0, 2, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: Icon(
-                            Icons.language_sharp,
-                            color: Color(0xFF222F3A),
-                            size: 24,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(90, 0, 0, 0),
-                          child: FlutterFlowLanguageSelector(
-                            width: 200,
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).primaryBtnText,
-                            dropdownColor:
-                                FlutterFlowTheme.of(context).primaryBtnText,
-                            dropdownIconColor: Color(0xFF168183),
-                            borderRadius: 5,
-                            textStyle: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 13,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(2, 5, 2, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Icon(
+                                Icons.language_sharp,
+                                color: Color(0xFF222F3A),
+                                size: 24,
+                              ),
                             ),
-                            hideFlags: false,
-                            flagSize: 24,
-                            flagTextGap: 8,
-                            currentLanguage:
-                                FFLocalizations.of(context).languageCode,
-                            languages: FFLocalizations.languages(),
-                            onChanged: (lang) => setAppLanguage(context, lang),
-                          ),
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                child: Text(
+                                  FFLocalizations.of(context).languageCode,
+                                  style: FlutterFlowTheme.of(context).bodyText2,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(2, 5, 0, 5),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: FlutterFlowLanguageSelector(
+                                width: 200,
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                dropdownColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                dropdownIconColor: Color(0xFF14181B),
+                                borderRadius: 5,
+                                textStyle: TextStyle(
+                                  color: Color(0xFF222F3A),
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 13,
+                                ),
+                                hideFlags: false,
+                                flagSize: 24,
+                                flagTextGap: 8,
+                                currentLanguage:
+                                    FFLocalizations.of(context).languageCode,
+                                languages: FFLocalizations.languages(),
+                                onChanged: (lang) =>
+                                    setAppLanguage(context, lang),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -211,10 +236,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.06,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(
-                      color: Color(0xFFE0E3E7),
-                      width: 2,
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      width: 1,
                     ),
                   ),
                   child: Padding(
@@ -237,7 +262,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                 EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'memchm9e' /* Switch to Dark Mode */,
+                                '1qjhsg3w' /* Switch to Dark Mode */,
                               ),
                               style: FlutterFlowTheme.of(context).bodyText2,
                             ),
@@ -299,95 +324,60 @@ class _SettingsWidgetState extends State<SettingsWidget>
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        await signOut();
-                        await Navigator.pushAndRemoveUntil(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: WelcomeWidget(),
-                          ),
-                          (r) => false,
-                        );
-                      },
-                      text: FFLocalizations.of(context).getText(
-                        'bhqh0yr9' /* Logout */,
+                padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                child: InkWell(
+                  onTap: () async {
+                    await Navigator.pushAndRemoveUntil(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                        reverseDuration: Duration(milliseconds: 0),
+                        child: WelcomeWidget(),
                       ),
-                      options: FFButtonOptions(
-                        width: 130,
-                        height: 40,
-                        color: Color(0xFF168183),
-                        textStyle: FlutterFlowTheme.of(context)
-                            .subtitle2
-                            .override(
-                              fontFamily: 'SharpSans',
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).subtitle2Family),
-                            ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
+                      (r) => false,
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        width: 1,
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: LanguageWidget(),
-                          ),
-                        );
-                      },
-                      text: FFLocalizations.of(context).getText(
-                        'xn92fvtg' /* Select language */,
-                      ),
-                      options: FFButtonOptions(
-                        width: 180,
-                        height: 40,
-                        color: Color(0xFF168183),
-                        textStyle: FlutterFlowTheme.of(context)
-                            .subtitle2
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).subtitle2Family,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).subtitle2Family),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                            child: Icon(
+                              Icons.logout,
+                              color: Color(0xFF222F3A),
+                              size: 24,
                             ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'wus7hb9t' /* Logout */,
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyText2,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],
