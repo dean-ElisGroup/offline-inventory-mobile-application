@@ -10,6 +10,7 @@ import '../welcome/welcome_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingsWidget extends StatefulWidget {
@@ -21,24 +22,23 @@ class SettingsWidget extends StatefulWidget {
 
 class _SettingsWidgetState extends State<SettingsWidget>
     with TickerProviderStateMixin {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  var hasContainerTriggered = false;
   final animationsMap = {
     'containerOnActionTriggerAnimation': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
-      duration: 350,
-      hideBeforeAnimating: false,
-      initialState: AnimationState(
-        offset: Offset(40, 0),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      applyInitialState: false,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 350.ms,
+          begin: Offset(40, 0),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
   };
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -48,9 +48,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
       await actions.lockOrientation();
     });
 
-    setupTriggerAnimations(
-      animationsMap.values
-          .where((anim) => anim.trigger == AnimationTrigger.onActionTrigger),
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
       this,
     );
   }
@@ -59,6 +60,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
       appBar: AppBar(
         backgroundColor: Color(0xFF168183),
         automaticallyImplyLeading: false,
@@ -93,7 +95,6 @@ class _SettingsWidgetState extends State<SettingsWidget>
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -284,10 +285,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     borderRadius: BorderRadius.circular(30),
                                     shape: BoxShape.rectangle,
                                   ),
-                                ).animated([
-                                  animationsMap[
-                                      'containerOnActionTriggerAnimation']!
-                                ]),
+                                ).animateOnActionTrigger(
+                                    animationsMap[
+                                        'containerOnActionTriggerAnimation']!,
+                                    hasBeenTriggered: hasContainerTriggered),
                               ),
                             ],
                           ),

@@ -49,6 +49,7 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: Color(0xFF168183),
         automaticallyImplyLeading: false,
@@ -91,7 +92,6 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -169,8 +169,14 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    dateTimeFormat('MMMMEEEEd',
-                                                        getCurrentTimestamp),
+                                                    dateTimeFormat(
+                                                      'MMMMEEEEd',
+                                                      getCurrentTimestamp,
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    ),
                                                     textAlign: TextAlign.center,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -353,27 +359,43 @@ class _PointOfServiceWidgetState extends State<PointOfServiceWidget> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 5, 0, 0),
-                                        child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            'p0ixjwfv' /* Select point of service */,
+                                            10, 5, 10, 0),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xD3F1F4F8),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              width: 1,
+                                            ),
                                           ),
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1Family,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w600,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyText1Family),
-                                              ),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'p0ixjwfv' /* Select point of service */,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyText1Family,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ),

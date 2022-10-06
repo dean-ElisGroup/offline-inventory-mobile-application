@@ -6,6 +6,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../welcome/welcome_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Settings1Widget extends StatefulWidget {
@@ -19,213 +21,244 @@ class _Settings1WidgetState extends State<Settings1Widget>
     with TickerProviderStateMixin {
   bool? switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  var hasContainerTriggered1 = false;
+  var hasContainerTriggered2 = false;
   final animationsMap = {
     'cardOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 0.6,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.6,
+          end: 1,
+        ),
+      ],
     ),
     'textOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 20),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 20),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'textOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 20),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 20),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'dividerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 20),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 20),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 60),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 60),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'containerOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 60),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 60),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'containerOnActionTriggerAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
-      duration: 350,
-      hideBeforeAnimating: false,
-      initialState: AnimationState(
-        offset: Offset(40, 0),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      applyInitialState: false,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 350.ms,
+          begin: Offset(40, 0),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'containerOnPageLoadAnimation3': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 70),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 70),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'containerOnActionTriggerAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
-      duration: 350,
-      hideBeforeAnimating: false,
-      initialState: AnimationState(
-        offset: Offset(-40, 0),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      applyInitialState: false,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 350.ms,
+          begin: Offset(-40, 0),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'containerOnPageLoadAnimation4': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 200,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 60),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 200.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 200.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 200.ms,
+          duration: 600.ms,
+          begin: Offset(0, 60),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'containerOnPageLoadAnimation5': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 300,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 60),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 300.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 300.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 300.ms,
+          duration: 600.ms,
+          begin: Offset(0, 60),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
     'buttonOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 400,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 60),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
+      effects: [
+        VisibilityEffect(duration: 400.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 400.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 400.ms,
+          duration: 600.ms,
+          begin: Offset(0, 60),
+          end: Offset(0, 0),
+        ),
+      ],
     ),
   };
 
   @override
   void initState() {
     super.initState();
-    startPageLoadAnimations(
-      animationsMap.values
-          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
-      this,
-    );
-    setupTriggerAnimations(
-      animationsMap.values
-          .where((anim) => anim.trigger == AnimationTrigger.onActionTrigger),
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
       this,
     );
   }
@@ -234,6 +267,7 @@ class _Settings1WidgetState extends State<Settings1Widget>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
@@ -259,7 +293,6 @@ class _Settings1WidgetState extends State<Settings1Widget>
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -284,7 +317,7 @@ class _Settings1WidgetState extends State<Settings1Widget>
                     ),
                   ),
                 ),
-              ).animated([animationsMap['cardOnPageLoadAnimation']!]),
+              ).animateOnPageLoad(animationsMap['cardOnPageLoadAnimation']!),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: Text(
@@ -292,7 +325,7 @@ class _Settings1WidgetState extends State<Settings1Widget>
                     'ug4q66wi' /* Andrea Davis */,
                   ),
                   style: FlutterFlowTheme.of(context).title3,
-                ).animated([animationsMap['textOnPageLoadAnimation1']!]),
+                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
@@ -307,7 +340,7 @@ class _Settings1WidgetState extends State<Settings1Widget>
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).subtitle2Family),
                       ),
-                ).animated([animationsMap['textOnPageLoadAnimation2']!]),
+                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation2']!),
               ),
               Divider(
                 height: 44,
@@ -315,7 +348,7 @@ class _Settings1WidgetState extends State<Settings1Widget>
                 indent: 24,
                 endIndent: 24,
                 color: FlutterFlowTheme.of(context).lineColor,
-              ).animated([animationsMap['dividerOnPageLoadAnimation']!]),
+              ).animateOnPageLoad(animationsMap['dividerOnPageLoadAnimation']!),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                 child: Container(
@@ -366,7 +399,8 @@ class _Settings1WidgetState extends State<Settings1Widget>
                       ],
                     ),
                   ),
-                ).animated([animationsMap['containerOnPageLoadAnimation1']!]),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation1']!),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
@@ -378,15 +412,15 @@ class _Settings1WidgetState extends State<Settings1Widget>
                         onTap: () async {
                           setDarkModeSetting(context, ThemeMode.dark);
                           if (animationsMap[
-                                  'containerOnActionTriggerAnimation2'] ==
+                                  'containerOnActionTriggerAnimation2'] !=
                               null) {
-                            return;
+                            setState(() => hasContainerTriggered2 = true);
+                            SchedulerBinding.instance.addPostFrameCallback(
+                                (_) async => await animationsMap[
+                                        'containerOnActionTriggerAnimation2']!
+                                    .controller
+                                    .forward(from: 0.0));
                           }
-                          await (animationsMap[
-                                      'containerOnActionTriggerAnimation2']!
-                                  .curvedAnimation
-                                  .parent as AnimationController)
-                              .forward(from: 0.0);
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,
@@ -475,10 +509,11 @@ class _Settings1WidgetState extends State<Settings1Widget>
                                                 BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                        ).animated([
-                                          animationsMap[
-                                              'containerOnActionTriggerAnimation1']!
-                                        ]),
+                                        ).animateOnActionTrigger(
+                                            animationsMap[
+                                                'containerOnActionTriggerAnimation1']!,
+                                            hasBeenTriggered:
+                                                hasContainerTriggered1),
                                       ),
                                     ],
                                   ),
@@ -487,22 +522,22 @@ class _Settings1WidgetState extends State<Settings1Widget>
                             ),
                           ),
                         ),
-                      ).animated(
-                          [animationsMap['containerOnPageLoadAnimation2']!]),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation2']!),
                     if (Theme.of(context).brightness == Brightness.dark)
                       InkWell(
                         onTap: () async {
                           setDarkModeSetting(context, ThemeMode.light);
                           if (animationsMap[
-                                  'containerOnActionTriggerAnimation1'] ==
+                                  'containerOnActionTriggerAnimation1'] !=
                               null) {
-                            return;
+                            setState(() => hasContainerTriggered1 = true);
+                            SchedulerBinding.instance.addPostFrameCallback(
+                                (_) async => await animationsMap[
+                                        'containerOnActionTriggerAnimation1']!
+                                    .controller
+                                    .forward(from: 0.0));
                           }
-                          await (animationsMap[
-                                      'containerOnActionTriggerAnimation1']!
-                                  .curvedAnimation
-                                  .parent as AnimationController)
-                              .forward(from: 0.0);
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,
@@ -595,10 +630,11 @@ class _Settings1WidgetState extends State<Settings1Widget>
                                                 BorderRadius.circular(30),
                                             shape: BoxShape.rectangle,
                                           ),
-                                        ).animated([
-                                          animationsMap[
-                                              'containerOnActionTriggerAnimation2']!
-                                        ]),
+                                        ).animateOnActionTrigger(
+                                            animationsMap[
+                                                'containerOnActionTriggerAnimation2']!,
+                                            hasBeenTriggered:
+                                                hasContainerTriggered2),
                                       ),
                                     ],
                                   ),
@@ -607,8 +643,8 @@ class _Settings1WidgetState extends State<Settings1Widget>
                             ),
                           ),
                         ),
-                      ).animated(
-                          [animationsMap['containerOnPageLoadAnimation3']!]),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation3']!),
                   ],
                 ),
               ),
@@ -649,7 +685,8 @@ class _Settings1WidgetState extends State<Settings1Widget>
                       ],
                     ),
                   ),
-                ).animated([animationsMap['containerOnPageLoadAnimation4']!]),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation4']!),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
@@ -688,7 +725,8 @@ class _Settings1WidgetState extends State<Settings1Widget>
                       ],
                     ),
                   ),
-                ).animated([animationsMap['containerOnPageLoadAnimation5']!]),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation5']!),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
@@ -721,7 +759,8 @@ class _Settings1WidgetState extends State<Settings1Widget>
                     ),
                     borderRadius: BorderRadius.circular(38),
                   ),
-                ).animated([animationsMap['buttonOnPageLoadAnimation']!]),
+                ).animateOnPageLoad(
+                    animationsMap['buttonOnPageLoadAnimation']!),
               ),
             ],
           ),

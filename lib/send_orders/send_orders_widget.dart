@@ -30,6 +30,7 @@ class _SendOrdersWidgetState extends State<SendOrdersWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: Color(0xFF168183),
         automaticallyImplyLeading: false,
@@ -64,7 +65,6 @@ class _SendOrdersWidgetState extends State<SendOrdersWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -122,7 +122,11 @@ class _SendOrdersWidgetState extends State<SendOrdersWidget> {
                                 children: [
                                   Text(
                                     dateTimeFormat(
-                                        'MMMMEEEEd', getCurrentTimestamp),
+                                      'MMMMEEEEd',
+                                      getCurrentTimestamp,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -158,7 +162,9 @@ class _SendOrdersWidgetState extends State<SendOrdersWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Select order to send',
+                        FFLocalizations.of(context).getText(
+                          'v1ybuqyo' /* Select order to send */,
+                        ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyText1Family,
@@ -256,7 +262,10 @@ class _SendOrdersWidgetState extends State<SendOrdersWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                '[orderId]',
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'txsltr5f' /* [orderId] */,
+                                                ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1

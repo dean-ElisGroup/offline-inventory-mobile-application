@@ -17,7 +17,11 @@ class _OrderDateRowWidgetState extends State<OrderDateRowWidget> {
   void initState() {
     super.initState();
     textController = TextEditingController(
-        text: dateTimeFormat('MMMMEEEEd', getCurrentTimestamp));
+        text: dateTimeFormat(
+      'MMMMEEEEd',
+      getCurrentTimestamp,
+      locale: FFLocalizations.of(context).languageCode,
+    ));
   }
 
   @override

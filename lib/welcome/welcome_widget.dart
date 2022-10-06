@@ -77,7 +77,11 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     Align(
                       alignment: AlignmentDirectional(0, 0.7),
                       child: Text(
-                        dateTimeFormat('MMMMEEEEd', getCurrentTimestamp),
+                        dateTimeFormat(
+                          'MMMMEEEEd',
+                          getCurrentTimestamp,
+                          locale: FFLocalizations.of(context).languageCode,
+                        ),
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'SharpSans',
@@ -408,10 +412,14 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                             userIdController!.text != '') {
                                           setState(() => FFAppState().userid =
                                               userIdController!.text);
-                                          setState(() =>
-                                              FFAppState().orderdate =
-                                                  dateTimeFormat('d/M/y',
-                                                      getCurrentTimestamp));
+                                          setState(() => FFAppState()
+                                                  .orderdate = dateTimeFormat(
+                                                'd/M/y',
+                                                getCurrentTimestamp,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ));
                                           await Navigator.push(
                                             context,
                                             PageTransition(

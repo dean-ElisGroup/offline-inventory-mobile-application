@@ -30,6 +30,7 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: Color(0xFF168183),
         automaticallyImplyLeading: false,
@@ -64,7 +65,6 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -122,7 +122,11 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                                 children: [
                                   Text(
                                     dateTimeFormat(
-                                        'MMMMEEEEd', getCurrentTimestamp),
+                                      'MMMMEEEEd',
+                                      getCurrentTimestamp,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -158,7 +162,9 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Select order',
+                        FFLocalizations.of(context).getText(
+                          'x6b64wx6' /* Select order */,
+                        ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyText1Family,
@@ -256,7 +262,10 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                '[orderId]',
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  '9p5xfj3g' /* [orderId] */,
+                                                ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1

@@ -56,7 +56,11 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
                     Align(
                       alignment: AlignmentDirectional(0, 0.7),
                       child: Text(
-                        dateTimeFormat('MMMMEEEEd', getCurrentTimestamp),
+                        dateTimeFormat(
+                          'MMMMEEEEd',
+                          getCurrentTimestamp,
+                          locale: FFLocalizations.of(context).languageCode,
+                        ),
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'SharpSans',
@@ -107,22 +111,45 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text(
-                                      FFLocalizations.of(context).getText(
-                                        '831ld5kf' /* Please select an option */,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'SharpSans',
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10, 0, 10, 0),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xD3F1F4F8),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              width: 1,
+                                            ),
                                           ),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              '831ld5kf' /* Please select an option */,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'SharpSans',
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                                ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

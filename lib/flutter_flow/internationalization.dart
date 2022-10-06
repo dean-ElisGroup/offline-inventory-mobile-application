@@ -243,19 +243,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': 'Quantidade',
     },
     'nqn32a7t': {
-      'en': '[  Article Name ]',
+      'en': 'Sheet Single',
       'de': '[ Artikelname ]',
       'fr': '[ Nom d&#39;article ]',
       'pt': '[ Nome do artigo ]',
     },
     'fdvogtq2': {
-      'en': '[ Article Id ]',
+      'en': '112254',
       'de': '[Artikel-ID]',
       'fr': '[ Identifiant de l&#39;article ]',
       'pt': '[ID do artigo]',
     },
     '8s79twv3': {
-      'en': '[ 0 / 0 ]',
+      'en': '1 / 3',
       'de': '[ 0 / 0 ]',
       'fr': '[ 0 / 0 ]',
       'pt': '[0/0]',
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': 'Quantidade do pedido',
     },
     'rt748xh9': {
-      'en': '[ SOL qty ]',
+      'en': '120',
       'de': '[SOL Menge]',
       'fr': '[ Quantité SOL ]',
       'pt': '[ SOL qtd ]',
@@ -299,13 +299,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Afficher les commandes',
       'pt': 'Ver pedidos',
     },
-    'ykej8aab': {
+    'x6b64wx6': {
       'en': 'Select order',
       'de': '',
       'fr': '',
       'pt': '',
     },
-    'fzs3gi89': {
+    '9p5xfj3g': {
       'en': '[orderId]',
       'de': '',
       'fr': '',
@@ -326,13 +326,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Envoyer des commandes',
       'pt': 'Enviar pedidos',
     },
-    'll4qa4un': {
+    'v1ybuqyo': {
       'en': 'Select order to send',
       'de': '',
       'fr': '',
       'pt': '',
     },
-    'c1x97wvh': {
+    'txsltr5f': {
       'en': '[orderId]',
       'de': '',
       'fr': '',

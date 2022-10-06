@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../point_of_service/point_of_service_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
+import '../custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,6 +54,7 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: Color(0xFF168183),
         automaticallyImplyLeading: false,
@@ -95,7 +97,6 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -116,69 +117,110 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                        child: Text(
-                          dateTimeFormat('MMMMEEEEd', getCurrentTimestamp),
-                          textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'SharpSans',
-                                fontSize: 18,
-                                fontWeight: FontWeight.w800,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        width: 2,
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 5, 0, 0),
+                                    child: Text(
+                                      dateTimeFormat(
+                                        'MMMMEEEEd',
+                                        getCurrentTimestamp,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'SharpSans',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w800,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family),
+                                          ),
+                                    ),
+                                  ),
+                                ],
                               ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    FFAppState().deliveryAddressName,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'SharpSans',
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w800,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1Family),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    widget.parmPOS!,
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'SharpSans',
+                                          color: Color(0xFF2982D9),
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.w800,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1Family),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        FFAppState().deliveryAddressName,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'SharpSans',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
-                            ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.parmPOS!,
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'SharpSans',
-                              color: Color(0xFF2982D9),
-                              fontSize: 32,
-                              fontWeight: FontWeight.w800,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
-                            ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -218,14 +260,16 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                               BorderRadius.circular(5),
                                         ),
                                         child: Container(
-                                          width: 100,
+                                          width: double.infinity,
                                           height: 100,
                                           decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBtnText,
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             border: Border.all(
                                               color: Color(0xFF168183),
-                                              width: 4,
+                                              width: 2,
                                             ),
                                           ),
                                           child: SingleChildScrollView(
@@ -292,142 +336,153 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                                         10,
                                                                         0,
                                                                         10),
-                                                            child: Material(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              elevation: 5,
-                                                              shape:
-                                                                  RoundedRectangleBorder(
+                                                            child: Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.4,
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.18,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
                                                                             5),
-                                                              ),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.4,
-                                                                height: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    0.18,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  border: Border
-                                                                      .all(
-                                                                    color: Color(
-                                                                        0xFF168183),
-                                                                    width: 3,
-                                                                  ),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: Color(
+                                                                      0xFF168183),
+                                                                  width: 3,
                                                                 ),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Expanded(
-                                                                      child:
-                                                                          TextFormField(
-                                                                        controller:
-                                                                            textController1,
-                                                                        autofocus:
-                                                                            true,
-                                                                        obscureText:
-                                                                            false,
-                                                                        decoration:
-                                                                            InputDecoration(
-                                                                          hintText:
-                                                                              FFLocalizations.of(context).getText(
-                                                                            '2su3z5bc' /* Qty */,
+                                                              ),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child:
+                                                                        TextFormField(
+                                                                      controller:
+                                                                          textController1,
+                                                                      autofocus:
+                                                                          true,
+                                                                      obscureText:
+                                                                          false,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        hintText:
+                                                                            FFLocalizations.of(context).getText(
+                                                                          '2su3z5bc' /* Qty */,
+                                                                        ),
+                                                                        hintStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyText2
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText2Family,
+                                                                              color: Color(0x3C222F3A),
+                                                                              fontSize: 60,
+                                                                              fontWeight: FontWeight.w100,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText2Family),
+                                                                            ),
+                                                                        enabledBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
                                                                           ),
-                                                                          hintStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyText2
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText2Family,
-                                                                                color: Color(0x3C222F3A),
-                                                                                fontSize: 60,
-                                                                                fontWeight: FontWeight.w100,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText2Family),
-                                                                              ),
-                                                                          enabledBorder:
-                                                                              UnderlineInputBorder(
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Color(0x00000000),
-                                                                              width: 1,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                const BorderRadius.only(
-                                                                              topLeft: Radius.circular(4.0),
-                                                                              topRight: Radius.circular(4.0),
-                                                                            ),
-                                                                          ),
-                                                                          focusedBorder:
-                                                                              UnderlineInputBorder(
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Color(0x00000000),
-                                                                              width: 1,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                const BorderRadius.only(
-                                                                              topLeft: Radius.circular(4.0),
-                                                                              topRight: Radius.circular(4.0),
-                                                                            ),
-                                                                          ),
-                                                                          errorBorder:
-                                                                              UnderlineInputBorder(
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Color(0x00000000),
-                                                                              width: 1,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                const BorderRadius.only(
-                                                                              topLeft: Radius.circular(4.0),
-                                                                              topRight: Radius.circular(4.0),
-                                                                            ),
-                                                                          ),
-                                                                          focusedErrorBorder:
-                                                                              UnderlineInputBorder(
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Color(0x00000000),
-                                                                              width: 1,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                const BorderRadius.only(
-                                                                              topLeft: Radius.circular(4.0),
-                                                                              topRight: Radius.circular(4.0),
-                                                                            ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
                                                                           ),
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                              fontSize: 60,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                            ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        keyboardType:
-                                                                            TextInputType.number,
+                                                                        focusedBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        errorBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        focusedErrorBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
                                                                       ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodyText1Family,
+                                                                            fontSize:
+                                                                                60,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                          ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      keyboardType:
+                                                                          TextInputType
+                                                                              .number,
                                                                     ),
-                                                                  ],
-                                                                ),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ),
                                                           ),
@@ -468,7 +523,7 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  'nqn32a7t' /* [  Article Name ] */,
+                                                                  'nqn32a7t' /* Sheet Single */,
                                                                 ),
                                                                 textAlign:
                                                                     TextAlign
@@ -501,7 +556,7 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                                 FFLocalizations.of(
                                                                         context)
                                                                     .getText(
-                                                                  'fdvogtq2' /* [ Article Id ] */,
+                                                                  'fdvogtq2' /* 112254 */,
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
@@ -535,7 +590,7 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        '8s79twv3' /* [ 0 / 0 ] */,
+                                                        '8s79twv3' /* 1 / 3 */,
                                                       ),
                                                       textAlign:
                                                           TextAlign.center,
@@ -666,81 +721,72 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        elevation: 5,
-                                                        shape:
-                                                            RoundedRectangleBorder(
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.3,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.15,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(5),
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xFF168183),
+                                                            width: 3,
+                                                          ),
                                                         ),
-                                                        child: Container(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.3,
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              0.15,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                            border: Border.all(
-                                                              color: Color(
-                                                                  0xFF168183),
-                                                              width: 3,
-                                                            ),
-                                                          ),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            2,
-                                                                            0,
-                                                                            2,
-                                                                            0),
-                                                                child: Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'rt748xh9' /* [ SOL qty ] */,
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyText1Family,
-                                                                        fontSize:
-                                                                            18,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                      ),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          2,
+                                                                          0,
+                                                                          2,
+                                                                          0),
+                                                              child: Text(
+                                                                FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  'rt748xh9' /* 120 */,
                                                                 ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family,
+                                                                      fontSize:
+                                                                          30,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyText1Family),
+                                                                    ),
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                       Padding(
@@ -766,7 +812,7 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                       Material(
                                                         color:
                                                             Colors.transparent,
-                                                        elevation: 5,
+                                                        elevation: 0,
                                                         shape:
                                                             RoundedRectangleBorder(
                                                           borderRadius:
@@ -799,117 +845,130 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                               width: 3,
                                                             ),
                                                           ),
-                                                          child: Row(
+                                                          child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
                                                             children: [
-                                                              Expanded(
-                                                                child:
-                                                                    TextFormField(
-                                                                  controller:
-                                                                      textController2,
-                                                                  autofocus:
-                                                                      true,
-                                                                  obscureText:
-                                                                      false,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    hintText: FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      '506frxhc' /* 0 */,
-                                                                    ),
-                                                                    enabledBorder:
-                                                                        UnderlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Color(
-                                                                            0x00000000),
-                                                                        width:
-                                                                            1,
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child:
+                                                                        TextFormField(
+                                                                      controller:
+                                                                          textController2,
+                                                                      autofocus:
+                                                                          true,
+                                                                      readOnly:
+                                                                          true,
+                                                                      obscureText:
+                                                                          false,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        hintText:
+                                                                            FFLocalizations.of(context).getText(
+                                                                          '506frxhc' /* 0 */,
+                                                                        ),
+                                                                        enabledBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        errorBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        focusedErrorBorder:
+                                                                            UnderlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0x00000000),
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
                                                                       ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        UnderlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Color(
-                                                                            0x00000000),
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
-                                                                    ),
-                                                                    errorBorder:
-                                                                        UnderlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Color(
-                                                                            0x00000000),
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
-                                                                    ),
-                                                                    focusedErrorBorder:
-                                                                        UnderlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Color(
-                                                                            0x00000000),
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodyText1Family,
+                                                                            fontSize:
+                                                                                30,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                          ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
                                                                     ),
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyText1Family,
-                                                                        fontSize:
-                                                                            30,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                      ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
+                                                                ],
+                                                              ),
+                                                              Container(
+                                                                width: 200,
+                                                                height: 200,
+                                                                child: custom_widgets
+                                                                    .FlutterSwitch(
+                                                                  width: 200,
+                                                                  height: 200,
                                                                 ),
                                                               ),
                                                             ],

@@ -47,6 +47,7 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xFF168183),
         automaticallyImplyLeading: false,
@@ -91,7 +92,6 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -155,7 +155,11 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                         0, 5, 0, 5),
                                     child: Text(
                                       dateTimeFormat(
-                                          'MMMMEEEEd', getCurrentTimestamp),
+                                        'MMMMEEEEd',
+                                        getCurrentTimestamp,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
@@ -179,27 +183,46 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              'w6umobmn' /* Select delivery address */,
-                            ),
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'SharpSans',
-                                  color: Color(0xFF222F3A),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: Color(0xD3F1F4F8),
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    width: 1,
+                                  ),
                                 ),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'w6umobmn' /* Select delivery address */,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'SharpSans',
+                                        color: Color(0xFF222F3A),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1Family),
+                                      ),
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
