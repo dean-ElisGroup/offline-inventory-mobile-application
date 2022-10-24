@@ -99,12 +99,14 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                 width: double.infinity,
                 height: double.infinity,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: Image.asset(
-                      'assets/images/truck_uk_1_copy1.png',
-                    ).image,
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0x76168183),
+                      FlutterFlowTheme.of(context).primaryColor
+                    ],
+                    stops: [0, 1],
+                    begin: AlignmentDirectional(0, -1),
+                    end: AlignmentDirectional(0, 1),
                   ),
                 ),
                 child: Column(
@@ -266,7 +268,8 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                         width:
                                             MediaQuery.of(context).size.width,
                                         decoration: BoxDecoration(
-                                          color: Color(0xD3F1F4F8),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
                                           borderRadius:
                                               BorderRadius.circular(5),
                                           border: Border.all(
@@ -344,6 +347,11 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                                   color: Color(0xFF168183),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBtnText,
+                                                  ),
                                                 ),
                                                 child: InkWell(
                                                   onTap: () async {
@@ -435,6 +443,9 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                       height: 100,
                       decoration: BoxDecoration(
                         color: Color(0xFF168183),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primaryBtnText,
+                        ),
                       ),
                       child: Padding(
                         padding:

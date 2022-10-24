@@ -5,7 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../point_of_service_group/point_of_service_group_widget.dart';
-import '../welcome/welcome_widget.dart';
+import '../welcome_copy/welcome_copy_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -69,7 +69,7 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                 type: PageTransitionType.fade,
                 duration: Duration(milliseconds: 0),
                 reverseDuration: Duration(milliseconds: 0),
-                child: WelcomeWidget(),
+                child: WelcomeCopyWidget(),
               ),
               (r) => false,
             );
@@ -101,11 +101,14 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                 width: double.infinity,
                 height: double.infinity,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: Image.asset(
-                      'assets/images/truck_uk_1_copy1.png',
-                    ).image,
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0x76168183),
+                      FlutterFlowTheme.of(context).primaryColor
+                    ],
+                    stops: [0, 1],
+                    begin: AlignmentDirectional(0, -1),
+                    end: AlignmentDirectional(0, 1),
                   ),
                 ),
                 child: Column(
@@ -195,7 +198,8 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
-                                  color: Color(0xD3F1F4F8),
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
                                     color: FlutterFlowTheme.of(context)
@@ -300,6 +304,11 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             shape: BoxShape.rectangle,
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
+                                            ),
                                           ),
                                           alignment: AlignmentDirectional(0, 0),
                                           child: Column(

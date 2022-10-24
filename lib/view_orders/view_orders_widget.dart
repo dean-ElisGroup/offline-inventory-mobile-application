@@ -1,3 +1,4 @@
+import '../amend_article_entry/amend_article_entry_widget.dart';
 import '../components/orderdate_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -161,18 +162,40 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        FFLocalizations.of(context).getText(
-                          'x6b64wx6' /* Select order */,
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyText1Family,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Color(0xD3F1F4F8),
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                width: 1,
+                              ),
                             ),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'x6b64wx6' /* Select order */,
+                              ),
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyText1Family,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyText1Family),
+                                  ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -204,38 +227,67 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                               return Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  elevation: 3,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                                child: InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                        reverseDuration:
+                                            Duration(milliseconds: 0),
+                                        child: AmendArticleEntryWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 10, 10, 10),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                FFAppState()
-                                                    .deliveryAddressName,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10, 10, 10, 10),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              onTap: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 0),
+                                                    child:
+                                                        AmendArticleEntryWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    FFAppState()
+                                                        .deliveryAddressName,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily:
@@ -253,21 +305,38 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                                                                           context)
                                                                       .bodyText1Family),
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '9p5xfj3g' /* [orderId] */,
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                            ),
+                                            InkWell(
+                                              onTap: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 0),
+                                                    child:
+                                                        AmendArticleEntryWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      '9p5xfj3g' /* [orderId] */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily:
@@ -284,10 +353,12 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                                                                           context)
                                                                       .bodyText1Family),
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
-                                        ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

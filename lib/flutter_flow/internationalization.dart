@@ -51,45 +51,27 @@ Locale createLocale(String language) => language.contains('_')
     : Locale(language);
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
-  // Welcome
+  // WelcomeCopy
   {
-    '1n3douax': {
-      'en': 'Hello!',
-      'de': 'Hallo!',
-      'fr': 'Bonjour!',
-      'pt': 'Olá!',
+    'se2nax6a': {
+      'en': 'Username',
+      'de': '',
+      'fr': '',
+      'pt': '',
     },
-    'r2ndg8gp': {
-      'en': '',
-      'de': 'Benutzeridentifikation',
-      'fr': 'Identifiant d&#39;utilisateur',
-      'pt': 'ID do usuário',
-    },
-    'efx1wkit': {
-      'en': 'User Id',
-      'de': 'Benutzeridentifikation',
-      'fr': 'Identifiant d&#39;utilisateur',
-      'pt': 'ID do usuário',
-    },
-    'eduyxa81': {
-      'en': '',
-      'de': 'Passwort',
-      'fr': 'Mot de passe',
-      'pt': 'Senha',
-    },
-    '1amcflbj': {
+    '1x49yemh': {
       'en': 'Password',
-      'de': 'Passwort',
-      'fr': 'Mot de passe',
-      'pt': 'Senha',
+      'de': '',
+      'fr': '',
+      'pt': '',
     },
-    'mxt1psma': {
+    'acujhol4': {
       'en': 'Login',
-      'de': 'Anmeldung',
-      'fr': 'Connexion',
-      'pt': 'Conecte-se',
+      'de': '',
+      'fr': '',
+      'pt': '',
     },
-    'shdzl7vv': {
+    'jd1ismzd': {
       'en': 'Logout',
       'de': 'Ausloggen',
       'fr': 'Se déconnecter',
@@ -189,39 +171,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': 'Casa',
     },
   },
-  // Point_of_Service
-  {
-    'xkm1blj5': {
-      'en': 'Point of Service',
-      'de': 'Servicestelle',
-      'fr': 'Point de service',
-      'pt': 'Ponto de serviço',
-    },
-    'iax5dttp': {
-      'en': 'Delivery address',
-      'de': 'Lieferadresse',
-      'fr': 'Adresse de livraison',
-      'pt': 'Endereço de entrega',
-    },
-    '0mhcu8dx': {
-      'en': 'Point of service group',
-      'de': 'Point-of-Service-Gruppe',
-      'fr': 'Groupe de point de service',
-      'pt': 'Grupo de ponto de serviço',
-    },
-    'p0ixjwfv': {
-      'en': 'Select point of service',
-      'de': 'Servicestelle auswählen',
-      'fr': 'Sélectionnez le point de service',
-      'pt': 'Selecione o ponto de atendimento',
-    },
-    'spf68vtu': {
-      'en': 'Home',
-      'de': 'Heim',
-      'fr': 'Maison',
-      'pt': 'Casa',
-    },
-  },
   // Article_Entry
   {
     'rms3uobx': {
@@ -285,6 +234,39 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': '0',
     },
     '7jb4w0c7': {
+      'en': 'Home',
+      'de': 'Heim',
+      'fr': 'Maison',
+      'pt': 'Casa',
+    },
+  },
+  // Point_of_Service
+  {
+    'xkm1blj5': {
+      'en': 'Point of Service',
+      'de': 'Servicestelle',
+      'fr': 'Point de service',
+      'pt': 'Ponto de serviço',
+    },
+    'iax5dttp': {
+      'en': 'Delivery address',
+      'de': 'Lieferadresse',
+      'fr': 'Adresse de livraison',
+      'pt': 'Endereço de entrega',
+    },
+    '0mhcu8dx': {
+      'en': 'Point of service group',
+      'de': 'Point-of-Service-Gruppe',
+      'fr': 'Groupe de point de service',
+      'pt': 'Grupo de ponto de serviço',
+    },
+    'p0ixjwfv': {
+      'en': 'Select point of service',
+      'de': 'Servicestelle auswählen',
+      'fr': 'Sélectionnez le point de service',
+      'pt': 'Selecione o ponto de atendimento',
+    },
+    'spf68vtu': {
       'en': 'Home',
       'de': 'Heim',
       'fr': 'Maison',
@@ -469,6 +451,51 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Heim',
       'fr': 'Maison',
       'pt': 'Casa',
+    },
+  },
+  // Welcome
+  {
+    '1n3douax': {
+      'en': 'Hello!',
+      'de': 'Hallo!',
+      'fr': 'Bonjour!',
+      'pt': 'Olá!',
+    },
+    'r2ndg8gp': {
+      'en': '',
+      'de': 'Benutzeridentifikation',
+      'fr': 'Identifiant d&#39;utilisateur',
+      'pt': 'ID do usuário',
+    },
+    'efx1wkit': {
+      'en': 'User Id',
+      'de': 'Benutzeridentifikation',
+      'fr': 'Identifiant d&#39;utilisateur',
+      'pt': 'ID do usuário',
+    },
+    'eduyxa81': {
+      'en': '',
+      'de': 'Passwort',
+      'fr': 'Mot de passe',
+      'pt': 'Senha',
+    },
+    '1amcflbj': {
+      'en': 'Password',
+      'de': 'Passwort',
+      'fr': 'Mot de passe',
+      'pt': 'Senha',
+    },
+    'mxt1psma': {
+      'en': 'Login',
+      'de': 'Anmeldung',
+      'fr': 'Connexion',
+      'pt': 'Conecte-se',
+    },
+    'shdzl7vv': {
+      'en': 'Logout',
+      'de': 'Ausloggen',
+      'fr': 'Se déconnecter',
+      'pt': 'Sair',
     },
   },
   // orderdate

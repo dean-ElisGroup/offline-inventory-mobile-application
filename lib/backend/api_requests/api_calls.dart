@@ -84,6 +84,29 @@ class POSGroupCall {
       );
 }
 
+class UsersCall {
+  static Future<ApiCallResponse> call() {
+    final body = '''
+{
+  "username": "MREADFERN",
+  "password": "Tuesday1"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Users',
+      apiUrl:
+          'http://serviceonlinetest.elisonline.co.uk/SolMasterTraining1/Ordering.wso/Login',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-type': 'application/json',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

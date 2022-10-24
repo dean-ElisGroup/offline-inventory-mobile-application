@@ -4,7 +4,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../welcome/welcome_widget.dart';
+import '../welcome_copy/welcome_copy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -377,8 +377,9 @@ class _Settings1WidgetState extends State<Settings1Widget>
                         Expanded(
                           child: SwitchListTile.adaptive(
                             value: switchListTileValue ??= true,
-                            onChanged: (newValue) =>
-                                setState(() => switchListTileValue = newValue),
+                            onChanged: (newValue) async {
+                              setState(() => switchListTileValue = newValue!);
+                            },
                             title: Text(
                               FFLocalizations.of(context).getText(
                                 'dzotfsny' /* Active */,
@@ -739,7 +740,7 @@ class _Settings1WidgetState extends State<Settings1Widget>
                         type: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
                         reverseDuration: Duration(milliseconds: 0),
-                        child: WelcomeWidget(),
+                        child: WelcomeCopyWidget(),
                       ),
                       (r) => false,
                     );

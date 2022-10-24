@@ -103,12 +103,14 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.asset(
-                  'assets/images/truck_uk_1_copy1.png',
-                ).image,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0x76168183),
+                  FlutterFlowTheme.of(context).primaryColor
+                ],
+                stops: [0, 1],
+                begin: AlignmentDirectional(0, -1),
+                end: AlignmentDirectional(0, 1),
               ),
             ),
             child: Column(
@@ -848,6 +850,9 @@ class _ArticleEntryWidgetState extends State<ArticleEntryWidget> {
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
                                                             children: [
                                                               Row(
                                                                 mainAxisSize:

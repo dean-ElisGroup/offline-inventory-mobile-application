@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     userStream = inventoryOrderingFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
+    jwtTokenStream.listen((_) {});
     Future.delayed(
       Duration(seconds: 1),
       () => setState(() => displaySplashImage = false),
@@ -97,7 +98,7 @@ class _MyAppState extends State<MyApp> {
             )
           : currentUser!.loggedIn
               ? NavBarPage()
-              : WelcomeWidget(),
+              : WelcomeCopyWidget(),
     );
   }
 }
