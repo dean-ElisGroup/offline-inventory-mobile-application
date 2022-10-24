@@ -432,19 +432,45 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                                 );
                                                 if ((apiResultqla?.succeeded ??
                                                     true)) {
-                                                  await Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 0),
-                                                      reverseDuration: Duration(
-                                                          milliseconds: 0),
-                                                      child:
-                                                          LandingPageWidget(),
-                                                    ),
-                                                  );
+                                                  if ((apiResultqla?.jsonBody ??
+                                                      '')) {
+                                                    await Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                        reverseDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        child:
+                                                            LandingPageWidget(),
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Login credentials are incorrect. Please check and try again.',
+                                                          style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
+                                                    );
+                                                  }
                                                 } else {
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(
