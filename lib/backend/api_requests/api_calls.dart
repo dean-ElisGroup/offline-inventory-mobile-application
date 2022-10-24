@@ -85,11 +85,14 @@ class POSGroupCall {
 }
 
 class UsersCall {
-  static Future<ApiCallResponse> call() {
+  static Future<ApiCallResponse> call({
+    String? username = 'MREADFERN',
+    String? password = 'Tuesday1',
+  }) {
     final body = '''
 {
-  "username": "MREADFERN",
-  "password": "Tuesday1"
+  "username": "${username}",
+  "password": "${password}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Users',
