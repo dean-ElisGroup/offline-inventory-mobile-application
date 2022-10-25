@@ -32,6 +32,7 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() => FFAppState().userid = '');
       await actions.lockOrientation();
+      setState(() => FFAppState().sessionKeyLogin = '');
     });
 
     textController1 = TextEditingController();
@@ -432,8 +433,13 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                                 );
                                                 if ((apiResultqla?.succeeded ??
                                                     true)) {
-                                                  if ((apiResultqla?.jsonBody ??
-                                                      '')) {
+                                                  setState(() => FFAppState()
+                                                          .sessionKeyLogin =
+                                                      (apiResultqla?.jsonBody ??
+                                                          ''));
+                                                  if (FFAppState()
+                                                          .sessionKeyLogin !=
+                                                      '') {
                                                     await Navigator.push(
                                                       context,
                                                       PageTransition(
@@ -455,11 +461,16 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                                         .showSnackBar(
                                                       SnackBar(
                                                         content: Text(
-                                                          'Login credentials are incorrect. Please check and try again.',
+                                                          'Login credentials are incorrect.',
                                                           style: TextStyle(
-                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'SharpSans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryBtnText,
                                                             fontWeight:
                                                                 FontWeight.w500,
+                                                            fontSize: 14,
                                                           ),
                                                         ),
                                                         duration: Duration(
@@ -476,15 +487,18 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                                       .showSnackBar(
                                                     SnackBar(
                                                       content: Text(
-                                                        'Login credentials are incorrect. Please check and try again.',
+                                                        'Cannot load user data! Please try again.',
                                                         style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                                          fontFamily:
+                                                              'SharpSans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBtnText,
+                                                          fontSize: 14,
                                                         ),
                                                       ),
                                                       duration: Duration(
-                                                          milliseconds: 4000),
+                                                          milliseconds: 5000),
                                                       backgroundColor:
                                                           FlutterFlowTheme.of(
                                                                   context)

@@ -59,6 +59,9 @@ class FFAppState {
         print("Can't decode persisted json. Error: $e.");
       }
     }
+
+    _sessionKeyLogin =
+        prefs.getString('ff_sessionKeyLogin') ?? _sessionKeyLogin;
   }
 
   late SharedPreferences prefs;
@@ -157,6 +160,13 @@ class FFAppState {
   }
 
   bool changeLanguage = false;
+
+  String _sessionKeyLogin = '';
+  String get sessionKeyLogin => _sessionKeyLogin;
+  set sessionKeyLogin(String _value) {
+    _sessionKeyLogin = _value;
+    prefs.setString('ff_sessionKeyLogin', _value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

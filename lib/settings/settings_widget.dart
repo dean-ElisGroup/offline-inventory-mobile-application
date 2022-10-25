@@ -3,7 +3,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_language_selector.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../welcome/welcome_widget.dart';
+import '../welcome_copy/welcome_copy_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -327,15 +327,14 @@ class _SettingsWidgetState extends State<SettingsWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                 child: InkWell(
                   onTap: () async {
-                    await Navigator.pushAndRemoveUntil(
+                    await Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
                         reverseDuration: Duration(milliseconds: 0),
-                        child: WelcomeWidget(),
+                        child: WelcomeCopyWidget(),
                       ),
-                      (r) => false,
                     );
                   },
                   child: Container(

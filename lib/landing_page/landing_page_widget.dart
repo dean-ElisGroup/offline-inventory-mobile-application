@@ -1,6 +1,7 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import '../welcome_copy/welcome_copy_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -680,8 +681,7 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
                                                       Duration(milliseconds: 0),
                                                   reverseDuration:
                                                       Duration(milliseconds: 0),
-                                                  child: NavBarPage(
-                                                      initialPage: 'Settings'),
+                                                  child: WelcomeCopyWidget(),
                                                 ),
                                               );
                                             },
