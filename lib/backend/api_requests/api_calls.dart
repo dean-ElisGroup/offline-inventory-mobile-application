@@ -110,6 +110,30 @@ class UsersCall {
   }
 }
 
+class UserLogoutCall {
+  static Future<ApiCallResponse> call({
+    String? sessionKeyLogout = '',
+  }) {
+    final body = '''
+{
+  "sessionKey": "${sessionKeyLogout}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'UserLogout',
+      apiUrl:
+          'http://serviceonlinetest.elisonline.co.uk/SolMasterTraining1/Ordering.wso/Logout',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-type': 'application/json',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

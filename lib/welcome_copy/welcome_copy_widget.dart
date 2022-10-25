@@ -234,7 +234,6 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                                   Duration(milliseconds: 2000),
                                                   () => setState(() {}),
                                                 ),
-                                                autofocus: true,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   hintText: FFLocalizations.of(
