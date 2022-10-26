@@ -41,7 +41,7 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
             children: [
               Container(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.16,
                 decoration: BoxDecoration(
                   color: Color(0xFF168183),
                 ),
@@ -57,7 +57,7 @@ class _LandingPageWidgetState extends State<LandingPageWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, 0.7),
+                      alignment: AlignmentDirectional(0, 0.9),
                       child: Text(
                         dateTimeFormat(
                           'MMMMEEEEd',
