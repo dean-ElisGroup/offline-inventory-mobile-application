@@ -92,8 +92,8 @@ class POSGroupCall {
 
 class UsersCall {
   static Future<ApiCallResponse> call({
-    String? username = 'MREADFERN',
-    String? password = 'Tuesday1',
+    String? username = 'DBALL',
+    String? password = 'Monday99',
   }) {
     final body = '''
 {

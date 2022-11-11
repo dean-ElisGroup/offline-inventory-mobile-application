@@ -405,9 +405,12 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                                 if ((apiResultqla?.succeeded ??
                                                     true)) {
                                                   setState(() => FFAppState()
-                                                          .sessionKeyLogin =
-                                                      (apiResultqla?.jsonBody ??
-                                                          ''));
+                                                              .sessionKeyLogin =
+                                                          UsersCall.sessionKey(
+                                                        (apiResultqla
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      ).toString());
                                                   if (FFAppState()
                                                           .sessionKeyLogin !=
                                                       '') {
