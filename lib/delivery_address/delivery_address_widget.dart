@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../point_of_service_group/point_of_service_group_widget.dart';
 import '../welcome_copy/welcome_copy_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -98,8 +99,8 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
           child: Stack(
             children: [
               Container(
-                width: double.infinity,
-                height: double.infinity,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 1,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -119,71 +120,77 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
                       child: Container(
                         width: double.infinity,
+                        height: 80,
                         constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height * 0.1,
+                          maxHeight: MediaQuery.of(context).size.height * 1,
                         ),
                         decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
                           borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: Color(0xFF168183),
-                            width: 2,
-                          ),
                         ),
                         child: Stack(
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  OrderdateWidget(),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 5),
-                                    child: Text(
-                                      dateTimeFormat(
-                                        'MMMMEEEEd',
-                                        getCurrentTimestamp,
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'SharpSans',
-                                            color: Color(0xFF222F3A),
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w800,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
-                                          ),
-                                    ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 10, 0, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      OrderdateWidget(),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 5, 0, 5),
+                                      child: Text(
+                                        dateTimeFormat(
+                                          'MMMMEEEEd',
+                                          getCurrentTimestamp,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'SharpSans',
+                                              color: Color(0xFF222F3A),
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w800,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
+                    ),
+                    Divider(
+                      height: 2,
+                      thickness: 1,
+                      indent: 5,
+                      endIndent: 5,
+                      color: FlutterFlowTheme.of(context).primaryBtnText,
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
@@ -197,6 +204,8 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                   EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.06,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBtnText,
@@ -207,6 +216,7 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                     width: 1,
                                   ),
                                 ),
+                                alignment: AlignmentDirectional(0, 0.1),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
                                     'w6umobmn' /* Select delivery address */,
@@ -298,7 +308,10 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                         ),
                                         child: Container(
                                           width: double.infinity,
-                                          height: 100,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.1,
                                           decoration: BoxDecoration(
                                             color: Color(0xFF168183),
                                             borderRadius:
@@ -332,7 +345,7 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                                     ),
                                                   );
                                                 },
-                                                child: Text(
+                                                child: AutoSizeText(
                                                   getJsonField(
                                                     deliveryAddressItem,
                                                     r'''$..deliveryAddressName''',

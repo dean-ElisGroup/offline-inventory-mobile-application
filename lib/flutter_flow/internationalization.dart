@@ -159,7 +159,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': 'Endereço de entrega',
     },
     '61jj7cic': {
-      'en': 'Select point of service group',
+      'en': 'Please select point of service group',
       'de': 'Point-of-Service-Gruppe auswählen',
       'fr': 'Sélectionnez un groupe de points de service',
       'pt': 'Selecione o grupo de ponto de serviço',
@@ -329,24 +329,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Settings
   {
-    'wppp594p': {
-      'en': '[SOL User name]',
-      'de': '[SOL-Benutzername]',
-      'fr': '[Nom d&#39;utilisateur SOL]',
-      'pt': '[Nome de usuário SOL]',
-    },
-    '1qjhsg3w': {
-      'en': 'Switch to Dark Mode',
-      'de': 'Wechseln Sie in den dunklen Modus',
-      'fr': 'Passer en mode sombre',
-      'pt': 'Mudar para o modo escuro',
-    },
-    'wus7hb9t': {
-      'en': 'Logout',
-      'de': 'Wechseln Sie in den dunklen Modus',
-      'fr': 'Passer en mode sombre',
-      'pt': 'Mudar para o modo escuro',
-    },
     'vg65ze38': {
       'en': 'Settings',
       'de': 'Einstellungen',

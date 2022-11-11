@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../point_of_service/point_of_service_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,7 +74,7 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
             );
           },
         ),
-        title: Text(
+        title: AutoSizeText(
           FFLocalizations.of(context).getText(
             '2egxu8it' /* Point of Service Group */,
           ),
@@ -115,47 +116,39 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
                       child: Container(
-                        width: double.infinity,
-                        constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height * 0.2,
-                        ),
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
                             color: Color(0xFF168183),
-                            width: 2,
+                            width: 1,
                           ),
                         ),
                         child: Stack(
                           children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 0),
-                                  child: Row(
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
                                       OrderdateWidget(),
                                     ],
                                   ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 5, 0, 0),
-                                      child: Text(
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      AutoSizeText(
                                         dateTimeFormat(
                                           'MMMMEEEEd',
                                           getCurrentTimestamp,
@@ -168,7 +161,7 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                             .override(
                                               fontFamily: 'SharpSans',
                                               color: Color(0xFF222F3A),
-                                              fontSize: 18,
+                                              fontSize: 22,
                                               fontWeight: FontWeight.w800,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
@@ -178,19 +171,15 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                                               .bodyText1Family),
                                             ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 5, 0, 0),
-                                  child: Row(
+                                    ],
+                                  ),
+                                  Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text(
+                                      AutoSizeText(
                                         FFLocalizations.of(context).getText(
                                           'yump08wx' /* Delivery address */,
                                         ),
@@ -211,22 +200,18 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 5, 0, 5),
-                                  child: Row(
+                                  Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
+                                      AutoSizeText(
                                         FFAppState().deliveryAddressName,
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'SharpSans',
-                                              fontSize: 18,
+                                              fontSize: 22,
                                               fontWeight: FontWeight.w800,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
@@ -238,8 +223,8 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -258,7 +243,7 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
                                     child: Padding(
@@ -277,11 +262,12 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                                                 .primaryColor,
                                           ),
                                         ),
-                                        child: Text(
+                                        child: AutoSizeText(
                                           FFLocalizations.of(context).getText(
-                                            '61jj7cic' /* Select point of service group */,
+                                            '61jj7cic' /* Please select point of service... */,
                                           ),
                                           textAlign: TextAlign.center,
+                                          maxLines: 1,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -435,26 +421,6 @@ class _PointOfServiceGroupWidgetState extends State<PointOfServiceGroupWidget> {
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF168183),
-                        border: Border.all(
-                          color: FlutterFlowTheme.of(context).primaryBtnText,
-                        ),
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(150, 20, 150, 20),
-                        child: Image.asset(
-                          'assets/images/Elis_Logo-01.png',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.contain,
                         ),
                       ),
                     ),

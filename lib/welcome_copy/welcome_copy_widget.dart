@@ -91,6 +91,10 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [],
+                                    ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 20, 0, 0),
@@ -479,6 +483,10 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                               text: FFLocalizations.of(context)
                                                   .getText(
                                                 'acujhol4' /* Login */,
+                                              ),
+                                              icon: Icon(
+                                                Icons.login_sharp,
+                                                size: 15,
                                               ),
                                               options: FFButtonOptions(
                                                 width: 130,

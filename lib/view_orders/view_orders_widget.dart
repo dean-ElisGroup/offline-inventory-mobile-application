@@ -97,55 +97,47 @@ class _ViewOrdersWidgetState extends State<ViewOrdersWidget> {
                         width: 2,
                       ),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                    child: Stack(
                       children: [
-                        Stack(
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  OrderdateWidget(),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    dateTimeFormat(
-                                      'MMMMEEEEd',
-                                      getCurrentTimestamp,
-                                      locale: FFLocalizations.of(context)
-                                          .languageCode,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily:
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              OrderdateWidget(),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                dateTimeFormat(
+                                  'MMMMEEEEd',
+                                  getCurrentTimestamp,
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyText1Family,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w800,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText1Family,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w800,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
-                                        ),
-                                  ),
-                                ],
+                                                  .bodyText1Family),
+                                    ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../flutter_flow/flutter_flow_util.dart';
 
 import 'api_manager.dart';
@@ -15,6 +17,7 @@ class SolUsersCall {
       headers: {},
       params: {},
       returnBody: true,
+      cache: false,
     );
   }
 }
@@ -32,6 +35,7 @@ class DeliveryAddressCall {
         'solUser': solUser,
       },
       returnBody: true,
+      cache: false,
     );
   }
 }
@@ -49,6 +53,7 @@ class PointOfServiceCall {
         'posGroupId': posGroupId,
       },
       returnBody: true,
+      cache: false,
     );
   }
 
@@ -71,6 +76,7 @@ class POSGroupCall {
         'deliveryAddressId': deliveryAddressId,
       },
       returnBody: true,
+      cache: false,
     );
   }
 
@@ -106,8 +112,26 @@ class UsersCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      cache: false,
     );
   }
+
+  static dynamic sessionKey(dynamic response) => getJsonField(
+        response,
+        r'''$..sessionKey''',
+      );
+  static dynamic message(dynamic response) => getJsonField(
+        response,
+        r'''$..message''',
+      );
+  static dynamic name(dynamic response) => getJsonField(
+        response,
+        r'''$..name''',
+      );
+  static dynamic email(dynamic response) => getJsonField(
+        response,
+        r'''$..email''',
+      );
 }
 
 class UserLogoutCall {
@@ -130,6 +154,7 @@ class UserLogoutCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      cache: false,
     );
   }
 }
@@ -148,4 +173,13 @@ class ApiPagingParams {
   @override
   String toString() =>
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
+}
+
+String _serializeList(List? list) {
+  list ??= <String>[];
+  try {
+    return json.encode(list);
+  } catch (_) {
+    return '[]';
+  }
 }
