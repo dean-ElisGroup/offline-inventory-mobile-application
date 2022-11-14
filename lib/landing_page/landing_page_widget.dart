@@ -9,7 +9,12 @@ import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LandingPageWidget extends StatefulWidget {
-  const LandingPageWidget({Key? key}) : super(key: key);
+  const LandingPageWidget({
+    Key? key,
+    this.sessionUser,
+  }) : super(key: key);
+
+  final String? sessionUser;
 
   @override
   _LandingPageWidgetState createState() => _LandingPageWidgetState();

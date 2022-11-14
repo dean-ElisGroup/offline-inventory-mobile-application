@@ -411,6 +411,9 @@ class _WelcomeCopyWidgetState extends State<WelcomeCopyWidget> {
                                                                 ?.jsonBody ??
                                                             ''),
                                                       ).toString());
+                                                  setState(() => FFAppState()
+                                                          .userid =
+                                                      textController1!.text);
                                                   if (FFAppState()
                                                           .sessionKeyLogin !=
                                                       '') {

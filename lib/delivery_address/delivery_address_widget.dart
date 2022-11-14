@@ -34,8 +34,8 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await actions.lockOrientation();
-      apiResultxnf = await DeliveryAddressCall.call(
-        solUser: '1000',
+      apiResultxnf = await SOLOrderInfoCall.call(
+        sessionKey: FFAppState().sessionKeyLogin,
       );
       if ((apiResultxnf?.succeeded ?? true)) {
         setState(() =>
@@ -370,7 +370,7 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                               Text(
                                                 getJsonField(
                                                   deliveryAddressItem,
-                                                  r'''$..deliveryAddressId''',
+                                                  r'''$..deliveryAddressNo''',
                                                 ).toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)

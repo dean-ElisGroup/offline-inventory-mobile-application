@@ -159,6 +159,29 @@ class UserLogoutCall {
   }
 }
 
+class SOLOrderInfoCall {
+  static Future<ApiCallResponse> call({
+    String? sessionKey = '937F3DA7xBF27x4420x8A90x2D118AA487C1',
+  }) {
+    final body = '''
+{
+  "sessionKey": "${sessionKey}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SOLOrderInfo',
+      apiUrl:
+          'http://serviceonlinetest.elisonline.co.uk/SolMasterTraining1/Ordering.wso/OrderInfo',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
