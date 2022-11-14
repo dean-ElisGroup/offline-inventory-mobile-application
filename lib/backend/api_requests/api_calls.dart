@@ -161,11 +161,11 @@ class UserLogoutCall {
 
 class SOLOrderInfoCall {
   static Future<ApiCallResponse> call({
-    String? sessionKey = '937F3DA7xBF27x4420x8A90x2D118AA487C1',
+    String? sessionKey = 'B0D7D5F2x21B1x4348x8AC3xA27E14831AFB',
   }) {
     final body = '''
 {
-  "sessionKey": "${sessionKey}"
+  "sessionKey": "B0D7D5F2x21B1x4348x8AC3xA27E14831AFB"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'SOLOrderInfo',
@@ -180,6 +180,32 @@ class SOLOrderInfoCall {
       cache: false,
     );
   }
+
+  static dynamic deliveryAddressName(dynamic response) => getJsonField(
+        response,
+        r'''$..deliveryAddressName''',
+      );
+  static dynamic deliveryAddressNo(dynamic response) => getJsonField(
+        response,
+        r'''$..deliveryAddressNo''',
+      );
+  static dynamic pointOfServiceNo(dynamic response) => getJsonField(
+        response,
+        r'''$..pointOfServiceNo''',
+      );
+  static dynamic pointOfServiceName(dynamic response) => getJsonField(
+        response,
+        r'''$..pointOfServiceName''',
+      );
+  static dynamic pointOfServiceDescription(dynamic response) => getJsonField(
+        response,
+        r'''$..pointOfServiceDescription''',
+      );
+  static dynamic pointOfServices(dynamic response) => getJsonField(
+        response,
+        r'''$..pointOfServices''',
+        true,
+      );
 }
 
 class ApiPagingParams {
