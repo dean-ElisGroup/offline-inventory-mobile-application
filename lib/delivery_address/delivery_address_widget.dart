@@ -254,8 +254,10 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
                                 EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
                             child: Builder(
                               builder: (context) {
-                                final deliveryAddress =
-                                    FFAppState().deliveryaddressJson.toList();
+                                final deliveryAddress = getJsonField(
+                                  FFAppState().deliveryaddressJson,
+                                  r'''$..deliveryAddresses''',
+                                ).toList();
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:

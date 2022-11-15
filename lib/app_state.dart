@@ -62,6 +62,15 @@ class FFAppState {
 
     _sessionKeyLogin =
         prefs.getString('ff_sessionKeyLogin') ?? _sessionKeyLogin;
+    _orderInfoJson = prefs.getStringList('ff_orderInfoJson')?.map((x) {
+          try {
+            return jsonDecode(x);
+          } catch (e) {
+            print("Can't decode persisted json. Error: $e.");
+            return {};
+          }
+        }).toList() ??
+        _orderInfoJson;
   }
 
   late SharedPreferences prefs;
@@ -166,6 +175,26 @@ class FFAppState {
   set sessionKeyLogin(String _value) {
     _sessionKeyLogin = _value;
     prefs.setString('ff_sessionKeyLogin', _value);
+  }
+
+  List<dynamic> _orderInfoJson = [];
+  List<dynamic> get orderInfoJson => _orderInfoJson;
+  set orderInfoJson(List<dynamic> _value) {
+    _orderInfoJson = _value;
+    prefs.setStringList(
+        'ff_orderInfoJson', _value.map((x) => jsonEncode(x)).toList());
+  }
+
+  void addToOrderInfoJson(dynamic _value) {
+    _orderInfoJson.add(_value);
+    prefs.setStringList(
+        'ff_orderInfoJson', _orderInfoJson.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeFromOrderInfoJson(dynamic _value) {
+    _orderInfoJson.remove(_value);
+    prefs.setStringList(
+        'ff_orderInfoJson', _orderInfoJson.map((x) => jsonEncode(x)).toList());
   }
 }
 
